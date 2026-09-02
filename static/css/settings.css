@@ -1,0 +1,247 @@
+/* =========================================
+   Settings Page
+========================================= */
+
+.dashboard-wrapper{
+
+    padding:30px;
+
+}
+
+/* ================= HERO ================= */
+
+.hero-section{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    background:linear-gradient(135deg,#0B132B,#13294B);
+
+    border-radius:20px;
+
+    padding:35px;
+
+    margin-bottom:30px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.35);
+
+}
+
+.hero-left h1{
+
+    color:#fff;
+
+    font-size:36px;
+
+    margin-bottom:10px;
+
+}
+
+.hero-left p{
+
+    color:#B8C5D6;
+
+    line-height:1.7;
+
+}
+
+.hero-right{
+
+    color:#00E5FF;
+
+}
+
+/* ================= GRID ================= */
+
+.chart-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:25px;
+
+}
+
+/* ================= CARD ================= */
+
+.chart-card{
+
+    background:#14213D;
+
+    border-radius:18px;
+
+    padding:25px;
+
+    border:1px solid rgba(255,255,255,.05);
+
+    transition:.3s;
+
+    box-shadow:0 12px 30px rgba(0,0,0,.25);
+
+}
+
+.chart-card:hover{
+
+    transform:translateY(-6px);
+
+    box-shadow:0 18px 35px rgba(0,229,255,.18);
+
+}
+
+/* ================= HEADER ================= */
+
+.card-header{
+
+    margin-bottom:20px;
+
+}
+
+.card-header h3{
+
+    color:#fff;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    font-size:22px;
+
+}
+
+.card-header i{
+
+    color:#00E5FF;
+
+}
+
+/* ================= INPUTS ================= */
+
+label{
+
+    display:block;
+
+    margin-bottom:8px;
+
+    color:#D9E6F5;
+
+    font-weight:500;
+
+}
+
+input[type="text"],
+
+select{
+
+    width:100%;
+
+    padding:12px;
+
+    margin-bottom:18px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:#0F1D33;
+
+    color:#fff;
+
+    border:1px solid rgba(255,255,255,.08);
+
+    font-size:15px;
+
+}
+
+input[type="text"]:focus,
+
+select:focus{
+
+    outline:none;
+
+    border-color:#00E5FF;
+
+}
+
+/* ================= CHECKBOX ================= */
+
+input[type="checkbox"]{
+
+    margin-right:10px;
+
+    transform:scale(1.1);
+
+    accent-color:#00E5FF;
+
+}
+
+/* ================= BUTTON ================= */
+
+.primary-btn{
+
+    width:100%;
+
+    padding:14px;
+
+    border:none;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    background:linear-gradient(135deg,#00C6FF,#0072FF);
+
+    color:white;
+
+    font-size:16px;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.primary-btn:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:0 12px 24px rgba(0,229,255,.30);
+
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:1000px){
+
+    .chart-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+@media(max-width:768px){
+
+    .hero-section{
+
+        flex-direction:column;
+
+        text-align:center;
+
+        gap:20px;
+
+    }
+
+    .dashboard-wrapper{
+
+        padding:20px;
+
+    }
+
+}

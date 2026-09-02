@@ -1,0 +1,290 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/qr_scan.css') }}">
+
+<div class="qr-page">
+
+    <section class="qr-hero">
+
+        <div>
+
+            <p class="qr-eyebrow">
+                <i class="fa-solid fa-qrcode"></i>
+                Security tool
+            </p>
+
+            <h1>QR Code Scanner</h1>
+
+            <p>
+                Scan a QR code before opening its destination and review the decoded content in one place.
+            </p>
+
+        </div>
+
+        <div class="qr-hero-icon">
+
+            <i class="fa-solid fa-shield-halved"></i>
+
+        </div>
+
+    </section>
+
+    <div class="qr-grid">
+
+        <section class="qr-card qr-scanner-card">
+
+            <div class="qr-card-heading">
+
+                <div>
+
+                    <p class="qr-label">Live camera</p>
+
+                    <h2>Point the camera at a QR code</h2>
+
+                </div>
+
+                <span class="qr-status" id="scannerStatus">
+
+                    <span></span>
+                    Camera starting
+
+                </span>
+
+            </div>
+
+            <div id="qr-reader" class="qr-reader"></div>
+
+            <p class="qr-help">
+
+                <i class="fa-solid fa-lock"></i>
+
+                Camera access is used only while this page is open.
+
+            </p>
+
+            <div class="qr-divider">
+
+                <span>or</span>
+
+            </div>
+
+            <label class="qr-upload" for="qr-image-input">
+
+                <i class="fa-solid fa-image"></i>
+
+                <span>
+
+                    <strong>Choose a QR image</strong>
+
+                    <small>PNG, JPG, or WEBP</small>
+
+                </span>
+
+                <input
+                    id="qr-image-input"
+                    type="file"
+                    accept="image/png,image/jpeg,image/webp"
+                    hidden>
+
+            </label>
+
+        </section>
+
+        <aside class="qr-card qr-result-card">
+
+            <div class="qr-card-heading">
+
+                <div>
+
+                    <p class="qr-label">Scan result</p>
+
+                    <h2 id="resultTitle">Awaiting a QR code</h2>
+
+                </div>
+
+                <i class="fa-solid fa-circle-info qr-result-icon"></i>
+
+            </div>
+
+            <div id="emptyState" class="qr-empty-state">
+
+                <i class="fa-solid fa-qrcode"></i>
+
+                <p>
+                    The decoded value and a quick security check will appear here.
+                </p>
+
+            </div>
+
+            <div id="scanResult" class="qr-result" hidden>
+
+                <div id="riskBadge" class="qr-risk">
+
+                    <i class="fa-solid fa-circle-info"></i>
+
+                    <span>Review required</span>
+
+                </div>
+
+                <p class="qr-result-label">Decoded content</p>
+
+                <p id="decodedText" class="qr-decoded-text"></p>
+
+                <div class="qr-result-actions">
+
+                    <button
+                        type="button"
+                        class="qr-button qr-button-primary"
+                        id="copyResult">
+
+                        <i class="fa-solid fa-copy"></i>
+
+                        Copy
+
+                    </button>
+
+                    <a
+                        id="openResult"
+                        class="qr-button qr-button-secondary"
+                        href="#"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        hidden>
+
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+
+                        Open link
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </aside>
+
+    </div>
+
+</div>
+
+<script src="https://unpkg.com/html5-qrcode"
+        defer></script>
+
+<script>
+
+window.addEventListener("load", function () {
+
+    let scanner;
+
+    const status = document.getElementById("scannerStatus");
+    const title = document.getElementById("resultTitle");
+    const emptyState = document.getElementById("emptyState");
+    const result = document.getElementById("scanResult");
+    const decodedText = document.getElementById("decodedText");
+    const riskBadge = document.getElementById("riskBadge");
+    const openResult = document.getElementById("openResult");
+
+    function setStatus(message, active) {
+
+        status.innerHTML = "<span></span> " + message;
+        status.classList.toggle("is-active", active);
+
+    }
+
+    function showResult(value) {
+
+        const isUrl = /^https?:\/\//i.test(value);
+
+        decodedText.textContent = value;
+        title.textContent = "QR code decoded";
+
+        riskBadge.innerHTML =
+            '<i class="fa-solid fa-shield-halved"></i>' +
+            '<span>No obvious warning signs</span>';
+
+        emptyState.hidden = true;
+        result.hidden = false;
+
+        openResult.hidden = !isUrl;
+
+        if (isUrl) {
+            openResult.href = value;
+        }
+
+        setStatus("QR code detected", false);
+
+        if (scanner) {
+            scanner.pause(true);
+        }
+
+    }
+
+    scanner = new Html5QrcodeScanner(
+
+        "qr-reader",
+
+        {
+            fps: 10,
+            qrbox: {
+                width: 230,
+                height: 230
+            }
+        },
+
+        false
+
+    );
+
+    scanner.render(
+
+        function (decodedValue) {
+            showResult(decodedValue);
+        },
+
+        function () {}
+
+    );
+
+    setStatus("Camera starting", true);
+
+    document.getElementById("qr-image-input")
+        .addEventListener("change", function () {
+
+            const file = this.files[0];
+
+            if (!file) {
+                return;
+            }
+
+            scanner.clear().then(function () {
+
+                const imageScanner = new Html5Qrcode("qr-reader");
+
+                imageScanner.scanFile(file, true)
+
+                    .then(showResult)
+
+                    .catch(function () {
+                        setStatus("No QR code found", false);
+                    });
+
+            });
+
+        });
+
+    document.getElementById("copyResult")
+        .addEventListener("click", function () {
+
+            navigator.clipboard.writeText(decodedText.textContent);
+            setStatus("Copied to clipboard", false);
+
+        });
+
+});
+
+</script>
+
+{% endblock %}

@@ -1,0 +1,333 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="dashboard-wrapper">
+
+ <!-- ================= HERO ================= -->
+
+<div class="hero-section">
+
+    <canvas id="uploadHeroParticles"></canvas>
+    <canvas id="digitalRain"></canvas>
+
+    <div class="hero-left">
+
+        <h1>Upload & Analyze Files</h1>
+
+        <p>
+            Upload suspicious files and let the AI engine perform
+            malware detection, feature extraction and risk analysis.
+        </p>
+
+        <div class="hero-buttons">
+
+            <button class="primary-btn">
+                <i class="fa-solid fa-shield-halved"></i>
+                AI Malware Detection
+            </button>
+
+            <button class="secondary-btn">
+                <i class="fa-solid fa-brain"></i>
+                XGBoost Model
+            </button>
+
+        </div>
+
+    </div>
+
+    <div class="hero-right">
+
+        <div class="logo-container">
+
+            <span class="node node1"></span>
+            <span class="node node2"></span>
+            <span class="node node3"></span>
+            <span class="node node4"></span>
+
+            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="AI Shield">
+
+        </div>
+
+    </div>
+
+</div>
+   
+    <!-- ================= MAIN GRID ================= -->
+
+    <div class="chart-grid">
+
+        <!-- LEFT -->
+
+        <div class="left-column">
+
+            <div class="chart-card">
+
+                <div class="card-header">
+
+                    <h3>
+
+                        <i class="fa-solid fa-upload"></i>
+
+                        Upload File
+
+                    </h3>
+
+                </div>
+
+                <form
+                    action="{{ url_for('upload') }}"
+                    method="POST"
+                    enctype="multipart/form-data">
+
+                    <div class="upload-box">
+
+                        <i class="fa-solid fa-cloud-arrow-up fa-5x"></i>
+
+                        <h2>Select File</h2>
+
+                        <p>
+
+                            Supported:
+                            EXE • DLL • PDF • DOC • DOCX • XLS • XLSX • ZIP
+
+                        </p>
+
+                        <input
+                            type="file"
+                            name="file"
+                            id="fileInput"
+                            required>
+
+                        <div id="selectedFileName">
+                            No file selected
+                        </div>
+
+                    </div>
+
+                    <br>
+
+                    <button
+                        type="submit"
+                        class="primary-btn">
+
+                        <i class="fa-solid fa-magnifying-glass"></i>
+
+                        Scan File
+
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+        <!-- RIGHT -->
+
+        <div class="right-column">
+
+            <div class="chart-card">
+
+                <div class="card-header">
+
+                    <h3>
+
+                        <i class="fa-solid fa-circle-info"></i>
+
+                        AI Engine
+
+                    </h3>
+
+                </div>
+
+                <div class="status-grid">
+
+                    <div class="status-item">
+
+                        <span>AI Model</span>
+
+                        <span class="online">
+
+                            ONLINE
+
+                        </span>
+
+                    </div>
+
+                    <div class="status-item">
+
+                        <span>XGBoost</span>
+
+                        <span class="online">
+
+                            ACTIVE
+
+                        </span>
+
+                    </div>
+
+                    <div class="status-item">
+
+                        <span>Feature Extraction</span>
+
+                        <span class="online">
+
+                            READY
+
+                        </span>
+
+                    </div>
+
+                    <div class="status-item">
+
+                        <span>Prediction</span>
+
+                        <span class="online">
+
+                            AVAILABLE
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="chart-card">
+
+                <div class="card-header">
+
+                    <h3>
+
+                        <i class="fa-solid fa-file-shield"></i>
+
+                        Supported Files
+
+                    </h3>
+
+                </div>
+
+                <table class="recent-table">
+
+                    <tr>
+
+                        <td>EXE</td>
+
+                        <td>✔</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>DLL</td>
+
+                        <td>✔</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>PDF</td>
+
+                        <td>✔</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>DOC / DOCX</td>
+
+                        <td>✔</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>XLS / XLSX</td>
+
+                        <td>✔</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>ZIP</td>
+
+                        <td>✔</td>
+
+                    </tr>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const canvas = document.getElementById("digitalRain");
+
+    if (!canvas) return;
+
+    const ctx = canvas.getContext("2d");
+    const hero = canvas.parentElement;
+
+    const characters = "010101AISECURITYTHREATSCAN";
+    const fontSize = 16;
+
+    let drops = [];
+
+    function resizeDigitalRain() {
+
+        canvas.width = hero.clientWidth;
+        canvas.height = hero.clientHeight;
+
+        const columns = Math.floor(canvas.width / fontSize);
+
+        drops = Array.from(
+            { length: columns },
+            () => Math.random() * canvas.height / fontSize
+        );
+    }
+
+    function drawDigitalRain() {
+
+        ctx.fillStyle = "rgba(7, 25, 62, 0.08)";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        ctx.fillStyle = "rgba(30, 215, 255, 0.7)";
+        ctx.font = `${fontSize}px monospace`;
+
+        for (let i = 0; i < drops.length; i++) {
+
+            const character =
+                characters[Math.floor(Math.random() * characters.length)];
+
+            const x = i * fontSize;
+            const y = drops[i] * fontSize;
+
+            ctx.fillText(character, x, y);
+
+            if (y > canvas.height && Math.random() > 0.98) {
+                drops[i] = 0;
+            }
+
+            drops[i] += 0.25;
+        }
+
+        requestAnimationFrame(drawDigitalRain);
+    }
+
+    resizeDigitalRain();
+    drawDigitalRain();
+
+    window.addEventListener("resize", resizeDigitalRain);
+});
+</script>
+{% endblock %}

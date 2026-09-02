@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI Threat Detection System</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/layout.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/sidebar.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/navbar.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/upload.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/history.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/result.css') }}">
+    <link rel="stylesheet"
+      href="{{ url_for('static', filename='css/chatbot.css') }}">
+</head>
+
+<body>
+<canvas id="bgCanvas"></canvas>
+<div class="wrapper">
+
+    <!-- Sidebar -->
+    {% include "sidebar.html" %}
+
+    <!-- Main Content -->
+    <div class="main-content">
+
+        <!-- Navbar -->
+        {% include "navbar.html" %}
+
+        <!-- Page Content -->
+        <div class="page-content">
+
+            {% block content %}
+            {% endblock %}
+
+        </div>
+
+    </div>
+
+</div>
+{% include "chatbot.html" %}
+
+<script src="{{ url_for('static', filename='js/chatbot.js') }}"></script>
+<script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+<script src="{{ url_for('static', filename='js/background.js') }}"></script>
+</body>
+</html>

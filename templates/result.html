@@ -1,0 +1,291 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="dashboard-wrapper">
+
+    <!-- ================= HERO ================= -->
+
+    <div class="hero-section">
+
+        <div class="hero-left">
+
+            <h1>Threat Analysis Result</h1>
+
+            <p>
+
+                Artificial Intelligence Malware Classification Report
+
+            </p>
+
+        </div>
+
+        <div class="hero-right">
+
+            {% if prediction=="Safe" %}
+
+            <i class="fa-solid fa-shield-check fa-6x"
+               style="color:#00ff8c"></i>
+
+            {% else %}
+
+            <i class="fa-solid fa-triangle-exclamation fa-6x"
+               style="color:#ff4d6d"></i>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+    <!-- ================= RESULT ================= -->
+
+    <div class="summary-grid">
+
+        <div class="summary-item">
+
+            <h5>Prediction</h5>
+
+            <h2>{{ prediction }}</h2>
+
+        </div>
+
+        <div class="summary-item">
+
+            <h5>Risk Level</h5>
+
+            <h2>{{ risk }}</h2>
+
+        </div>
+
+        <div class="summary-item">
+
+            <h5>Confidence</h5>
+
+            <h2>{{ confidence }}%</h2>
+
+        </div>
+
+        <div class="summary-item">
+
+            <h5>File</h5>
+
+            <h2>{{ filename }}</h2>
+
+        </div>
+
+    </div>
+
+    <!-- ================= GRID ================= -->
+
+    <div class="chart-grid">
+
+        <!-- LEFT -->
+
+        <div class="left-column">
+
+            <div class="chart-card">
+
+                <div class="card-header">
+
+                    <h3>
+
+                        <i class="fa-solid fa-file-shield"></i>
+
+                        Scan Summary
+
+                    </h3>
+
+                </div>
+
+                <table class="recent-table">
+
+                    <tr>
+
+                        <td>Filename</td>
+
+                        <td>{{ filename }}</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>Prediction</td>
+
+                        <td>{{ prediction }}</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>Risk</td>
+
+                        <td>{{ risk }}</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>Confidence</td>
+
+                        <td>{{ confidence }}%</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>Scan Time</td>
+
+                        <td>{{ scan_time }}</td>
+
+                    </tr>
+
+                </table>
+
+            </div>
+
+            <div class="chart-card">
+
+                <div class="card-header">
+
+                    <h3>
+
+                        <i class="fa-solid fa-microchip"></i>
+
+                        Extracted Features
+
+                    </h3>
+
+                </div>
+
+                <table class="recent-table">
+
+                    {% for key,value in features.items() %}
+
+                    <tr>
+
+                        <td>{{ key }}</td>
+
+                        <td>{{ value }}</td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </table>
+
+            </div>
+
+        </div>
+
+        <!-- RIGHT -->
+
+        <div class="right-column">
+
+            <div class="chart-card">
+
+                <div class="card-header">
+
+                    <h3>
+
+                        AI Confidence
+
+                    </h3>
+
+                </div>
+
+                <div class="progress-circle"
+
+                     data-progress="{{ confidence }}">
+
+                </div>
+
+                <br>
+
+                <center>
+
+                    <h2>{{ confidence }}%</h2>
+
+                </center>
+
+            </div>
+
+            <div class="chart-card">
+
+                <div class="card-header">
+
+                    <h3>
+
+                        Recommendation
+
+                    </h3>
+
+                </div>
+
+                {% if prediction=="Safe" %}
+
+                <div class="success-alert">
+
+                    ✅ File is safe.
+
+                    No malicious behaviour detected.
+
+                </div>
+
+                {% else %}
+
+                <div class="critical-alert">
+
+                    🚨 Malware detected.
+
+                    Delete or quarantine immediately.
+
+                </div>
+
+                {% endif %}
+
+            </div>
+
+            <div class="chart-card">
+
+                <div class="card-header">
+
+                    <h3>
+
+                        Actions
+
+                    </h3>
+
+                </div>
+
+                <a href="{{ url_for('upload') }}">
+
+                    <button class="primary-btn">
+
+                        Scan Another File
+
+                    </button>
+
+                </a>
+
+                <br><br>
+
+                <a href="{{ url_for('history') }}">
+
+                    <button class="secondary-btn">
+
+                        View History
+
+                    </button>
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

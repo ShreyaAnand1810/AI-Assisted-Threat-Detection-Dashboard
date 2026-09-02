@@ -1,0 +1,159 @@
+# Agile Internship Project Document
+## AI-Assisted Threat Detection Dashboard
+
+**Internship period:** 22 June 2026 – 30 August 2026  
+**Methodology:** Agile / Sprint-based development  
+**Presentation & Demo:** 03 September 2026
+
+## 1. Project Overview
+The **AI-Assisted Threat Detection Dashboard** is a web-based cybersecurity application designed to provide a centralized interface for threat detection, file analysis, security monitoring, analytics, reporting, and cybersecurity assistance. It combines a Flask web application, machine-learning-based threat prediction, SQLite storage, visualization, security utilities, and an optional AI-assisted chatbot.
+
+## 2. Internship Objective
+- Apply Agile software development practices.
+- Develop a functional cybersecurity dashboard with a visualization-oriented UI.
+- Use machine learning to support threat/file classification.
+- Build analytics, history, reporting, and security-tool workflows.
+- Deploy and validate the application on AWS EC2 using Gunicorn and Nginx.
+- Create a reproducible local showcase version.
+- Prepare a polished, responsive application and final demo.
+
+## 3. Agile Approach
+The project uses iterative, outcome-focused sprints:
+- Product Backlog
+- Sprint Planning
+- Development
+- Testing and validation
+- Sprint Review
+- Retrospective and improvement
+
+## 4. Project Contribution
+The AWS/cloud and deployment-focused contribution included:
+- AWS/EC2 deployment and environment setup.
+- Gunicorn and Nginx production setup.
+- AWS-side application integration and deployment validation.
+- Git/GitHub branch and deployment workflow support.
+- Application backup and recovery preparation.
+- Portable local Windows showcase creation.
+- Authentication, startup, ML and route validation.
+- Support for responsive/professional UI improvements.
+
+## 5. Sprint Timeline
+
+| Sprint | Dates | Focus | Outcome |
+|---|---|---|---|
+| 1 | 22 Jun – 28 Jun | Onboarding, requirements, architecture, backlog | Initial project understanding |
+| 2 | 29 Jun – 5 Jul | Flask, database, authentication, local workflow | Core application flow |
+| 3 | 6 Jul – 12 Jul | AWS EC2, Ubuntu, Python environment, Git integration | EC2 environment |
+| 4 | 13 Jul – 19 Jul | Gunicorn, Nginx, systemd, endpoint validation | Production-style deployment |
+| 5 | 20 Jul – 26 Jul | Integration, Git workflow, stabilization | Integrated baseline |
+| 6 | 27 Jul – 2 Aug | Threat detection, analytics, reports, security tools | Major features reviewed |
+| 7 | 3 Aug – 9 Aug | UI/mobile planning, chatbot fallback, authentication, portability | Local showcase direction |
+| 8 | 10 Aug – 16 Aug | Backup, ML artifacts, deployment config, Windows setup | Portable showcase verified |
+| 9 | 17 Aug – 20 Aug | Final QA, responsive polish, docs, presentation/demo | Release candidate |
+
+## 6. AWS / Deployment Workstream
+- Ubuntu EC2 environment configured.
+- Python virtual environment and dependencies installed.
+- GitHub repository integrated with deployment workflow.
+- Gunicorn configured on `127.0.0.1:8000`.
+- Nginx configured as reverse proxy.
+- systemd service created.
+- Gunicorn/Nginx endpoints validated with `curl`.
+- Nginx, systemd, database, uploads, ML artifacts and dependency information backed up.
+- Portable showcase archive created without `venv` and cache files.
+- Archive transferred to Windows and SHA-256 checksum verified.
+- Local Windows copy recreated and tested.
+
+## 7. Technical Stack
+
+| Area | Technology |
+|---|---|
+| Frontend | HTML, CSS, JavaScript, responsive UI, charts |
+| Backend | Python, Flask, Flask-Login |
+| Database | SQLite |
+| ML | XGBoost, scikit-learn |
+| Cybersecurity | File/PCAP analysis, threat classification, security utilities |
+| AI | Google Gemini with offline fallback |
+| Deployment | AWS EC2, Ubuntu, Gunicorn, Nginx, systemd |
+| Version Control | Git, GitHub |
+| Showcase | Windows, Python 3.12 |
+
+## 8. Testing and Validation
+- Python syntax and application startup validation.
+- SQLite database validation.
+- Registration/login/logout validation.
+- Password-hash verification.
+- ML model and encoder loading validation.
+- Gunicorn and Nginx endpoint validation.
+- Showcase archive-content validation.
+- SHA-256 checksum verification.
+- Final responsive testing across desktop, tablet and mobile sizes.
+
+## 9. Key Challenges and Solutions
+
+| Challenge | Solution |
+|---|---|
+| EC2 production deployment | Gunicorn + Nginx + systemd |
+| Teammate changes/Git integration | Branches, remotes and backups |
+| AWS dependency for demo | Portable local Windows showcase |
+| Large virtual environment | Excluded `venv` and cache from showcase |
+| Gemini API missing locally | Optional Gemini initialization + offline fallback |
+| Authentication testing | SQLite inspection + Werkzeug hash verification |
+| Recovery risk | Backed up application, DB, ML and deployment configuration |
+
+## 10. Final Demo Definition of Done
+- Application starts locally.
+- Registration/login/logout works.
+- Threat detection can be demonstrated.
+- Dashboard visualizations are functional.
+- History and reports can be demonstrated.
+- Security tools/threat intelligence can be demonstrated.
+- AI assistant has offline fallback.
+- UI works on mobile-sized screens.
+- README and documentation are complete.
+- AWS architecture can be explained.
+- Demo can run without depending on a fragile live EC2 instance.
+
+## 11. Presentation / Demo Flow – 03 September 2026
+1. Problem statement and cybersecurity motivation.
+2. Project objectives and Agile approach.
+3. System architecture.
+4. Authentication and dashboard.
+5. Threat scanning and ML prediction.
+6. Analytics and history.
+7. Threat intelligence/security tools.
+8. Reports/export.
+9. AI assistant and offline fallback.
+10. Responsive/mobile UI.
+11. AWS architecture: **EC2 → Nginx → Gunicorn → Flask → SQLite/ML**.
+12. Testing, backup/recovery and local showcase.
+13. Challenges, learnings and future improvements.
+
+## 12. Learning Outcomes
+- Agile planning and iterative delivery.
+- AWS deployment of a Python web application.
+- Linux, reverse proxy and application-server concepts.
+- Git/GitHub collaboration and deployment safety.
+- ML-assisted cybersecurity workflows.
+- Dashboard and data-visualization UX.
+- Reproducible local demonstration environments.
+- Debugging, testing, documentation and presentation.
+
+## 13. Future Enhancements
+- Containerization.
+- Managed database.
+- CI/CD.
+- Centralized logging and monitoring.
+- Stronger RBAC and security hardening.
+- Expanded threat-intelligence feeds.
+- Better model evaluation and explainability.
+- Mobile-first and accessibility improvements.
+
+## 14. GitHub Documentation Checklist
+- `README.md` – project overview, features, architecture and setup.
+- `AGILE_INTERNSHIP_DOCUMENT.md` – this document.
+- `docs/architecture.md` – application/deployment architecture.
+- `docs/deployment.md` – local and AWS deployment.
+- `docs/demo.md` – final demo flow.
+- `requirements.txt` – dependencies.
+- Never commit AWS PEM files, API keys, passwords, `.env` secrets, or private credentials.

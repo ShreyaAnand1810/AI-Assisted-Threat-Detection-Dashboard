@@ -1,0 +1,262 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="dashboard-wrapper">
+
+    <!-- Header -->
+
+    <div class="hero-section">
+
+        <div class="hero-left">
+
+            <h1>My Profile</h1>
+
+            <p>
+
+                Manage your account information and security settings.
+
+            </p>
+
+        </div>
+
+        <div class="hero-right">
+
+            <i class="fas fa-user-circle fa-5x"></i>
+
+        </div>
+
+    </div>
+
+    <div class="chart-grid">
+
+        <!-- Profile Information -->
+
+        <div class="chart-card">
+
+            <div class="card-header">
+
+                <h3>
+
+                    <i class="fas fa-id-card"></i>
+
+                    Account Information
+
+                </h3>
+
+            </div>
+
+            <form>
+
+                <label>Username</label>
+
+                <input
+                    type="text"
+                    value="{{ user }}"
+                    readonly>
+
+                <label>Role</label>
+
+                <input
+                    type="text"
+                    value="{{ role }}"
+                    readonly>
+
+                <label>Email</label>
+
+                <input
+                    type="email"
+                    placeholder="example@email.com">
+
+                <label>Phone Number</label>
+
+                <input
+                    type="text"
+                    placeholder="+91XXXXXXXXXX">
+
+                <button
+                    class="primary-btn"
+                    onclick="saveProfile();return false;">
+
+                    Update Profile
+
+                </button>
+
+            </form>
+
+        </div>
+
+        <!-- Change Password -->
+
+        <div class="chart-card">
+
+            <div class="card-header">
+
+                <h3>
+
+                    <i class="fas fa-lock"></i>
+
+                    Change Password
+
+                </h3>
+
+            </div>
+
+            <form>
+
+                <label>Current Password</label>
+
+                <input
+                    type="password"
+                    placeholder="Current Password">
+
+                <label>New Password</label>
+
+                <input
+                    type="password"
+                    placeholder="New Password">
+
+                <label>Confirm Password</label>
+
+                <input
+                    type="password"
+                    placeholder="Confirm Password">
+
+                <button
+                    class="primary-btn"
+                    onclick="changePassword();return false;">
+
+                    Change Password
+
+                </button>
+
+            </form>
+
+        </div>
+
+        <!-- Login History -->
+
+        <div class="chart-card">
+
+            <div class="card-header">
+
+                <h3>
+
+                    <i class="fas fa-history"></i>
+
+                    Login History
+
+                </h3>
+
+            </div>
+
+            <table class="status-table">
+
+                <tr>
+
+                    <th>Date</th>
+
+                    <th>Device</th>
+
+                    <th>Status</th>
+
+                </tr>
+
+                <tr>
+
+                    <td>Today</td>
+
+                    <td>Windows PC</td>
+
+                    <td class="online">Success</td>
+
+                </tr>
+
+                <tr>
+
+                    <td>Yesterday</td>
+
+                    <td>Chrome Browser</td>
+
+                    <td class="online">Success</td>
+
+                </tr>
+
+                <tr>
+
+                    <td>2 Days Ago</td>
+
+                    <td>Desktop</td>
+
+                    <td class="online">Success</td>
+
+                </tr>
+
+            </table>
+
+        </div>
+
+        <!-- Security Status -->
+
+        <div class="chart-card">
+
+            <div class="card-header">
+
+                <h3>
+
+                    <i class="fas fa-shield-alt"></i>
+
+                    Security Status
+
+                </h3>
+
+            </div>
+
+            <table class="status-table">
+
+                <tr>
+
+                    <td>Account Status</td>
+
+                    <td class="online">Protected</td>
+
+                </tr>
+
+                <tr>
+
+                    <td>AI Monitoring</td>
+
+                    <td class="online">Enabled</td>
+
+                </tr>
+
+                <tr>
+
+                    <td>Threat Alerts</td>
+
+                    <td class="online">Active</td>
+
+                </tr>
+
+                <tr>
+
+                    <td>Last Login</td>
+
+                    <td>Today</td>
+
+                </tr>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/profile.css') }}">
+
+<script src="{{ url_for('static', filename='js/profile.js') }}"></script>
+
+{% endblock %}

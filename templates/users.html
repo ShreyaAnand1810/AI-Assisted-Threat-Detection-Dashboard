@@ -1,0 +1,483 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="dashboard-wrapper">
+
+    <!-- ================= HERO ================= -->
+
+<div class="hero-section">
+
+    <div class="users-hero-grid"></div>
+    <div class="users-scan-line"></div>
+
+    <span class="users-particle users-dot-one"></span>
+    <span class="users-particle users-dot-two"></span>
+    <span class="users-particle users-dot-three"></span>
+
+    <div class="hero-left">
+
+        <h1>User Management</h1>
+
+        <p>
+            Manage administrators and users of the AI Threat Detection System.
+        </p>
+
+    </div>
+
+    <div class="hero-right">
+
+        <div class="users-icon-pulse">
+
+            <i class="fa-solid fa-users fa-6x"
+               style="color:#00e5ff;"></i>
+
+        </div>
+
+    </div>
+
+</div>
+
+    <!-- ================= SUMMARY ================= -->
+
+    <div class="summary-grid">
+
+        <div class="summary-item">
+
+            <h5>Total Users</h5>
+
+            <h2>{{ users|length }}</h2>
+
+        </div>
+
+        <div class="summary-item">
+
+            <h5>Administrators</h5>
+
+            <h2>
+
+                {{ users | selectattr("role","equalto","admin") | list | length }}
+
+            </h2>
+
+        </div>
+
+        <div class="summary-item">
+
+            <h5>Standard Users</h5>
+
+            <h2>
+
+                {{ users | selectattr("role","equalto","user") | list | length }}
+
+            </h2>
+
+        </div>
+
+        <div class="summary-item">
+
+            <h5>Status</h5>
+
+            <h2 class="online">
+
+                ACTIVE
+
+            </h2>
+
+        </div>
+
+    </div>
+
+    <!-- ================= USERS TABLE ================= -->
+
+    <div class="chart-card">
+
+        <div class="card-header">
+
+            <h3>
+
+                <i class="fa-solid fa-user-group"></i>
+
+                Registered Users
+
+            </h3>
+
+        </div>
+
+        <table class="recent-table">
+
+            <thead>
+
+                <tr>
+
+                    <th>ID</th>
+
+                    <th>Username</th>
+
+                    <th>Role</th>
+
+                    <th>Status</th>
+
+                    <th>Action</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+            {% for user in users %}
+
+                <tr>
+
+                    <td>{{ user.id }}</td>
+
+                    <td>{{ user.username }}</td>
+
+                    <td>
+
+                        {% if user.role=="admin" %}
+
+                            <span class="online">
+
+                                Administrator
+
+                            </span>
+
+                        {% else %}
+
+                            Standard User
+
+                        {% endif %}
+
+                    </td>
+
+                    <td>
+
+                        <span class="online">
+
+                            Online
+
+                        </span>
+
+                    </td>
+
+                    <td>
+
+                        {% if user.username != "admin" %}
+
+                        <a href="{{ url_for('remove_user', id=user.id) }}">
+
+                            <button
+                                style="background:#ff4d6d;
+                                color:white;
+                                border:none;
+                                padding:8px 16px;
+                                border-radius:8px;
+                                cursor:pointer;">
+
+                                Delete
+
+                            </button>
+
+                        </a>
+
+                        {% else %}
+
+                        <button
+                            disabled
+                            style="background:#444;
+                            color:white;
+                            border:none;
+                            padding:8px 16px;
+                            border-radius:8px;">
+
+                            Protected
+
+                        </button>
+
+                        {% endif %}
+
+                    </td>
+
+                </tr>
+
+            {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+{% endblock %}
+/* =========================================
+   USER MANAGEMENT HERO
+========================================= */
+
+.users-hero{
+    position:relative;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    min-height:270px;
+    padding:48px;
+
+    margin-bottom:30px;
+    border-radius:22px;
+    overflow:hidden;
+
+    background:
+        radial-gradient(
+            circle at 82% 28%,
+            rgba(0,190,255,.28),
+            transparent 30%
+        ),
+        linear-gradient(
+            120deg,
+            #071f48,
+            #123d83,
+            #1555ae
+        );
+
+    border:1px solid rgba(0,190,255,.42);
+}
+
+/* Keep original content visible */
+
+.users-hero-left,
+.users-hero-right{
+    position:relative;
+    z-index:5;
+}
+
+.users-hero-left{
+    width:48%;
+}
+
+.users-hero-left h1{
+    color:#ffffff;
+    font-size:46px;
+    line-height:1.05;
+    margin-bottom:24px;
+}
+
+.users-hero-left p{
+    max-width:500px;
+    color:#bcd0ea;
+    font-size:18px;
+    line-height:1.7;
+}
+
+.users-hero-right{
+    width:42%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+/* Users icon */
+
+.users-icon-pulse{
+    position:relative;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    width:170px;
+    height:170px;
+
+    border-radius:50%;
+
+    animation:usersIconFloat 4s ease-in-out infinite;
+}
+
+.users-icon-pulse i{
+    position:relative;
+    z-index:3;
+
+    color:#00e5ff;
+    font-size:105px;
+
+    filter:
+        drop-shadow(0 0 14px rgba(0,229,255,.85))
+        drop-shadow(0 0 35px rgba(0,145,255,.55));
+}
+
+.users-icon-pulse::before,
+.users-icon-pulse::after{
+    content:"";
+    position:absolute;
+    inset:10px;
+
+    border:1px solid rgba(0,229,255,.5);
+    border-radius:50%;
+
+    animation:usersPulseRing 3s ease-out infinite;
+}
+
+.users-icon-pulse::after{
+    animation-delay:1.5s;
+}
+
+@keyframes usersPulseRing{
+    0%{
+        transform:scale(.65);
+        opacity:.8;
+    }
+
+    100%{
+        transform:scale(1.6);
+        opacity:0;
+    }
+}
+
+@keyframes usersIconFloat{
+    0%,
+    100%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-12px);
+    }
+}
+
+/* Animated cyber grid */
+
+.users-hero-grid{
+    position:absolute;
+    inset:0;
+    z-index:0;
+    pointer-events:none;
+
+    opacity:.18;
+
+    background-image:
+        linear-gradient(
+            rgba(0,229,255,.15) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(0,229,255,.15) 1px,
+            transparent 1px
+        );
+
+    background-size:38px 38px;
+
+    animation:usersGridMove 16s linear infinite;
+}
+
+@keyframes usersGridMove{
+    from{
+        background-position:0 0;
+    }
+
+    to{
+        background-position:38px 38px;
+    }
+}
+
+/* Scanner line */
+
+.users-hero-scan{
+    position:absolute;
+    left:0;
+    top:-5px;
+    z-index:2;
+
+    width:100%;
+    height:3px;
+
+    pointer-events:none;
+
+    background:linear-gradient(
+        90deg,
+        transparent,
+        rgba(0,229,255,.25),
+        #00e5ff,
+        rgba(0,229,255,.25),
+        transparent
+    );
+
+    box-shadow:
+        0 0 12px rgba(0,229,255,.9),
+        0 0 28px rgba(0,145,255,.65);
+
+    animation:usersScanMove 6s linear infinite;
+}
+
+@keyframes usersScanMove{
+    0%{
+        top:-5px;
+        opacity:0;
+    }
+
+    12%{
+        opacity:1;
+    }
+
+    88%{
+        opacity:1;
+    }
+
+    100%{
+        top:100%;
+        opacity:0;
+    }
+}
+
+/* Floating particles */
+
+.users-particle{
+    position:absolute;
+    z-index:2;
+
+    width:8px;
+    height:8px;
+
+    border-radius:50%;
+    background:#00e5ff;
+
+    box-shadow:
+        0 0 9px #00e5ff,
+        0 0 22px rgba(0,229,255,.8);
+
+    pointer-events:none;
+
+    animation:usersParticleMove 7s ease-in-out infinite;
+}
+
+.particle-one{
+    top:22%;
+    left:48%;
+}
+
+.particle-two{
+    top:70%;
+    left:58%;
+    animation-delay:2s;
+}
+
+.particle-three{
+    top:30%;
+    right:10%;
+    animation-delay:4s;
+}
+
+@keyframes usersParticleMove{
+    0%,
+    100%{
+        transform:translate(0,0) scale(.8);
+        opacity:.3;
+    }
+
+    50%{
+        transform:translate(65px,-30px) scale(1.2);
+        opacity:1;
+    }
+}

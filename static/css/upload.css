@@ -1,0 +1,710 @@
+/*=========================================
+ Upload Page
+=========================================*/
+
+.dashboard-wrapper{
+
+padding:30px;
+
+}
+
+/*================ HERO ================*/
+
+.hero-section{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+padding:45px;
+
+margin-bottom:30px;
+
+border-radius:22px;
+
+position:relative;
+
+overflow:hidden;
+
+background:
+radial-gradient(circle at top right,rgba(0,229,255,.10),transparent 40%),
+radial-gradient(circle at bottom left,rgba(0,119,255,.08),transparent 45%),
+linear-gradient(135deg,#071a33,#102b52);
+
+border:1px solid rgba(0,229,255,.12);
+
+box-shadow:
+0 18px 45px rgba(0,0,0,.35),
+0 0 35px rgba(0,170,255,.08);
+
+}
+#digitalRain{
+
+position:absolute;
+
+top:0;
+
+left:0;
+
+width:100%;
+
+height:100%;
+
+z-index:0;
+
+opacity:.14;
+
+pointer-events:none;
+
+}
+
+.hero-left h1{
+
+font-size:36px;
+
+color:#fff;
+
+margin-bottom:10px;
+
+}
+
+.hero-left p{
+
+color:#b7c7d9;
+
+font-size:15px;
+
+line-height:1.7;
+
+max-width:550px;
+
+}
+
+.hero-buttons{
+
+display:flex;
+
+gap:15px;
+
+margin-top:25px;
+
+}
+
+.hero-right{
+
+display:flex;
+
+justify-content:flex-end;
+
+align-items:center;
+
+flex:1;
+
+padding-right:150px;
+
+animation:heroFloat 4s ease-in-out infinite;
+
+}
+
+.hero-right img{
+
+width:340px;
+
+filter:
+drop-shadow(0 0 20px rgba(0,229,255,.8))
+drop-shadow(0 0 55px rgba(0,140,255,.45));
+
+transition:.4s;
+
+}
+
+.hero-right img:hover{
+
+transform:scale(1.05);
+
+}
+
+@keyframes heroFloat{
+
+0%,100%{
+
+transform:translateY(0);
+
+}
+
+50%{
+
+transform:translateY(-12px);
+
+}
+
+}
+
+/*================ GRID ================*/
+
+.chart-grid{
+
+display:grid;
+
+grid-template-columns:2fr 1fr;
+
+gap:25px;
+
+}
+
+.left-column{
+
+display:flex;
+
+flex-direction:column;
+
+gap:25px;
+
+}
+
+.right-column{
+
+display:flex;
+
+flex-direction:column;
+
+gap:25px;
+
+}
+
+/*================ CARD ================*/
+
+.chart-card{
+
+background:#12233d;
+
+border-radius:18px;
+
+padding:25px;
+
+box-shadow:0 12px 30px rgba(0,0,0,.25);
+
+border:1px solid rgba(255,255,255,.05);
+
+}
+
+.card-header{
+
+margin-bottom:25px;
+
+}
+
+.card-header h3{
+
+display:flex;
+
+align-items:center;
+
+gap:10px;
+
+font-size:22px;
+
+color:#fff;
+
+}
+
+.card-header i{
+
+color:#00e5ff;
+
+}
+
+/*================ UPLOAD BOX ================*/
+
+.upload-box{
+
+position:relative;
+
+border:2px dashed #00e5ff;
+
+border-radius:20px;
+
+padding:60px 30px;
+
+text-align:center;
+
+background:#0d1b30;
+
+overflow:hidden;
+
+transition:.35s;
+
+cursor:pointer;
+
+}
+
+.upload-box::before{
+
+content:"";
+
+position:absolute;
+
+top:-100%;
+
+left:-40%;
+
+width:50%;
+
+height:300%;
+
+background:linear-gradient(
+
+90deg,
+
+transparent,
+
+rgba(0,229,255,.25),
+
+transparent
+
+);
+
+transform:rotate(25deg);
+
+animation:scanGlow 4s linear infinite;
+
+}
+
+@keyframes scanGlow{
+
+0%{
+
+left:-70%;
+
+}
+
+100%{
+
+left:140%;
+
+}
+
+}
+
+.upload-box:hover{
+
+transform:translateY(-6px);
+
+box-shadow:
+
+0 18px 35px rgba(0,229,255,.18),
+
+0 0 25px rgba(0,170,255,.10);
+
+}
+
+/*================ FILE INPUT ================*/
+
+input[type=file]{
+
+width:100%;
+
+padding:14px;
+
+background:#162845;
+
+border:none;
+
+border-radius:10px;
+
+color:white;
+
+cursor:pointer;
+
+}
+
+/*================ BUTTONS ================*/
+
+.primary-btn{
+
+background:linear-gradient(135deg,#00c6ff,#0072ff);
+
+border:none;
+
+padding:14px 30px;
+
+border-radius:10px;
+
+color:white;
+
+font-size:15px;
+
+font-weight:600;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+.primary-btn:hover{
+
+transform:translateY(-3px);
+
+box-shadow:0 12px 25px rgba(0,229,255,.25);
+
+}
+
+.secondary-btn{
+
+background:#233957;
+
+border:none;
+
+padding:14px 28px;
+
+border-radius:10px;
+
+color:white;
+
+font-size:15px;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+.secondary-btn:hover{
+
+background:#2d4b75;
+
+}
+
+/*================ STATUS GRID ================*/
+
+.status-grid{
+
+display:grid;
+
+grid-template-columns:1fr;
+
+gap:16px;
+
+}
+
+.status-item{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+padding:14px 18px;
+
+background:#162845;
+
+border-radius:10px;
+
+color:white;
+
+}
+
+.online{
+
+color:#00d084;
+
+font-weight:700;
+
+}
+
+/*================ TABLE ================*/
+
+.recent-table{
+
+width:100%;
+
+border-collapse:collapse;
+
+}
+
+.recent-table td{
+
+padding:14px;
+
+border-bottom:1px solid rgba(255,255,255,.05);
+
+color:#d8e5f2;
+
+}
+
+.recent-table tr:hover{
+
+background:#162845;
+
+}
+
+/*================ RESPONSIVE ================*/
+
+@media(max-width:1100px){
+
+.chart-grid{
+
+grid-template-columns:1fr;
+
+}
+
+}
+
+@media(max-width:768px){
+
+.hero-section{
+
+flex-direction:column;
+
+text-align:center;
+
+gap:25px;
+
+}
+
+.hero-buttons{
+
+justify-content:center;
+
+flex-wrap:wrap;
+
+}
+
+.dashboard-wrapper{
+
+padding:20px;
+
+}
+
+}
+/*======================
+LOGO CONTAINER
+=======================*/
+
+.logo-container{
+
+position:relative;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+transform:translateX(140px);
+
+}
+
+.logo-container img{
+
+width:400px;
+
+position:relative;
+
+z-index:5;
+
+filter:
+drop-shadow(0 0 25px rgba(0,229,255,.9))
+drop-shadow(0 0 70px rgba(0,140,255,.55));
+
+transition:.4s;
+
+}
+
+.logo-container img:hover{
+
+transform:scale(1.05);
+
+}
+/* ==========================================
+   HERO PARTICLE BACKGROUND
+========================================== */
+
+.hero-section{
+
+position:relative;
+
+overflow:hidden;
+
+isolation:isolate;
+
+}
+
+#uploadHeroParticles{
+
+position:absolute;
+
+top:0;
+left:0;
+
+width:100%;
+height:100%;
+
+pointer-events:none;
+
+z-index:0;
+
+opacity:.45;
+
+}
+
+.hero-left,
+.hero-right{
+
+position:relative;
+
+z-index:2;
+
+}
+#selectedFileName{
+
+margin-top:18px;
+
+color:#00e5ff;
+
+font-weight:600;
+
+font-size:15px;
+
+animation:filePulse 2s infinite;
+
+}
+
+@keyframes filePulse{
+
+0%,100%{
+
+opacity:.65;
+
+}
+
+50%{
+
+opacity:1;
+
+}
+
+}
+/*=========================
+AI Floating Nodes
+=========================*/
+
+.node{
+
+position:absolute;
+
+width:12px;
+
+height:12px;
+
+border-radius:50%;
+
+background:#00e5ff;
+
+box-shadow:
+0 0 12px #00e5ff,
+0 0 30px #00e5ff;
+
+animation:floatNode 4s ease-in-out infinite;
+
+z-index:2;
+
+}
+
+.node1{
+
+top:30px;
+left:20px;
+
+}
+
+.node2{
+
+top:40px;
+right:25px;
+
+animation-delay:1s;
+
+}
+
+.node3{
+
+bottom:40px;
+left:35px;
+
+animation-delay:2s;
+
+}
+
+.node4{
+
+bottom:25px;
+right:20px;
+
+animation-delay:3s;
+
+}
+
+@keyframes floatNode{
+
+0%,100%{
+
+transform:translateY(0);
+
+opacity:.6;
+
+}
+
+50%{
+
+transform:translateY(-15px);
+
+opacity:1;
+
+}
+
+}
+.hero-left{
+
+position:relative;
+
+z-index:2;
+
+}
+.hero-right{
+
+position:relative;
+
+z-index:2;
+
+}
+/* =====================================
+   UPLOAD HERO DIGITAL RAIN
+===================================== */
+
+.hero-section{
+    position:relative;
+    overflow:hidden;
+}
+
+#digitalRain{
+    position:absolute;
+    inset:0;
+
+    width:100%;
+    height:100%;
+
+    z-index:0;
+    opacity:.16;
+
+    pointer-events:none;
+}
+
+.hero-left,
+.hero-right{
+    position:relative;
+    z-index:2;
+}

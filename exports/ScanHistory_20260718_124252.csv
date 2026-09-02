@@ -1,0 +1,3 @@
+ID,Filename,Extension,File Size,Entropy,MD5,SHA256,Prediction,Confidence,Risk,Recommendation,Scan Time
+2,WorkFlow.docx,.docx,180532,7.92,3e7f524910f63c391eec23d2cfd0d2cf,a00078037c16612f5486e9eecc96d664dbbe58ba49d579978dfb520172af5b13,Trojan,60.58000183105469,Medium,Review manually,18-07-2026 12:10:38
+1,WorkFlow.docx,.docx,180532,7.92,3e7f524910f63c391eec23d2cfd0d2cf,a00078037c16612f5486e9eecc96d664dbbe58ba49d579978dfb520172af5b13,Trojan,60.58000183105469,Medium,Review manually,18-07-2026 12:09:37

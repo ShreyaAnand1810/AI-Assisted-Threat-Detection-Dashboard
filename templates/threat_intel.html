@@ -1,0 +1,102 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="dashboard-wrapper">
+
+    <!-- ================= HERO SECTION ================= -->
+    <div class="hero-section">
+        <div class="hero-left">
+            <h1>Threat Intelligence</h1>
+            <p>
+                Real-time monitoring of global security feeds, active malware signatures, 
+                and live threat indicators.
+            </p>
+        </div>
+        <div class="hero-right">
+            <i class="fa-solid fa-globe fa-4x" style="color: #00e5ff; filter: drop-shadow(0 0 20px rgba(0, 229, 255, 0.6));"></i>
+        </div>
+    </div>
+
+    <!-- ================= SUMMARY GRID ================= -->
+    <div class="summary-grid">
+        <div class="summary-item">
+            <h5>Total Feeds</h5>
+            <h2>{{ threats|length if threats else 0 }}</h2>
+        </div>
+        <div class="summary-item">
+            <h5>Critical Threats</h5>
+            <h2>
+                {% if threats %}
+                    {{ threats | selectattr("severity","equalto","Critical") | list | length }}
+                {% else %}
+                    0
+                {% endif %}
+            </h2>
+        </div>
+        <div class="summary-item">
+            <h5>High Risk</h5>
+            <h2>
+                {% if threats %}
+                    {{ threats | selectattr("severity","equalto","High") | list | length }}
+                {% else %}
+                    0
+                {% endif %}
+            </h2>
+        </div>
+        <div class="summary-item">
+            <h5>Feed Status</h5>
+            <h2 class="online"><i class="fa-solid fa-circle" style="font-size: 10px;"></i> ACTIVE</h2>
+        </div>
+    </div>
+
+    <!-- ================= LIVE THREAT TABLE CARD ================= -->
+    <div class="chart-card">
+        <div class="card-header">
+            <h3>
+                <i class="fa-solid fa-triangle-exclamation"></i>
+                Live Threat Feed
+            </h3>
+        </div>
+
+        <div class="table-container">
+            <table class="threat-table">
+                <thead>
+                    <tr>
+                        <th class="col-time">Time</th>
+                        <th class="col-name">Threat Name</th>
+                        <th class="col-severity">Severity</th>
+                        <th class="col-status">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if threats %}
+                        {% for threat in threats %}
+                        <tr>
+                            <td class="col-time">{{ threat.time }}</td>
+                            <td class="col-name"><strong>{{ threat.name }}</strong></td>
+                            <td class="col-severity">
+                                <span class="severity {{ threat.severity|lower }}">
+                                    {{ threat.severity }}
+                                </span>
+                            </td>
+                            <td class="col-status">
+                                <span class="status-badge">
+                                    <i class="fa-solid fa-shield-halved"></i> {{ threat.status }}
+                                </span>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    {% else %}
+                        <tr>
+                            <td colspan="4" style="text-align: center; color: #8ea7c2; padding: 30px;">
+                                No active threats logged in feed.
+                            </td>
+                        </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

@@ -1,0 +1,924 @@
+/*=========================================
+ AI Threat Detection - Users Page
+=========================================*/
+
+.dashboard-wrapper{
+    padding:30px;
+}
+
+/*==========================
+ Hero Section
+==========================*/
+
+.hero-section{
+    position:relative;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    margin-bottom:30px;
+    padding:45px;
+    min-height:260px;
+
+    border-radius:18px;
+    overflow:hidden;
+
+    background:
+        radial-gradient(
+            circle at 82% 30%,
+            rgba(0,185,255,.25),
+            transparent 32%
+        ),
+        linear-gradient(
+            135deg,
+            #0f1f35,
+            #163d7a,
+            #1555ad
+        );
+
+    border:1px solid rgba(0,229,255,.28);
+
+    box-shadow:
+        0 12px 30px rgba(0,0,0,.25),
+        inset 0 0 35px rgba(0,123,255,.08);
+}
+
+.hero-left,
+.hero-right{
+    position:relative;
+    z-index:5;
+}
+
+.hero-left{
+    width:50%;
+}
+
+.hero-left h1{
+    font-size:42px;
+    line-height:1.05;
+    color:#fff;
+    margin-bottom:18px;
+}
+
+.hero-left p{
+    max-width:520px;
+    color:#b6c9df;
+    font-size:17px;
+    line-height:1.7;
+}
+
+.hero-right{
+    width:40%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#00e5ff;
+}
+
+/*==========================
+ Animated Cyber Grid
+==========================*/
+
+.hero-grid{
+    position:absolute;
+    inset:0;
+    z-index:0;
+
+    pointer-events:none;
+    opacity:.15;
+
+    background-image:
+        linear-gradient(
+            rgba(0,229,255,.14) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(0,229,255,.14) 1px,
+            transparent 1px
+        );
+
+    background-size:38px 38px;
+
+    animation:userGridMove 16s linear infinite;
+}
+
+@keyframes userGridMove{
+    from{
+        background-position:0 0;
+    }
+
+    to{
+        background-position:38px 38px;
+    }
+}
+
+/*==========================
+ Soft Floating Glows
+==========================*/
+
+.hero-glow{
+    position:absolute;
+    z-index:1;
+
+    border-radius:50%;
+    pointer-events:none;
+
+    filter:blur(55px);
+    opacity:.28;
+
+    animation:userGlowFloat 7s ease-in-out infinite;
+}
+
+.glow1{
+    width:180px;
+    height:180px;
+
+    top:-35px;
+    right:80px;
+
+    background:#00e5ff;
+}
+
+.glow2{
+    width:140px;
+    height:140px;
+
+    bottom:-45px;
+    left:42%;
+
+    background:#006eff;
+
+    animation-delay:2s;
+}
+
+.glow3{
+    width:100px;
+    height:100px;
+
+    top:38%;
+    right:27%;
+
+    background:#00c8ff;
+
+    animation-delay:4s;
+}
+
+@keyframes userGlowFloat{
+    0%,
+    100%{
+        transform:translateY(0) scale(1);
+    }
+
+    50%{
+        transform:translateY(-18px) scale(1.08);
+    }
+}
+
+/*==========================
+ Scanner Line
+==========================*/
+
+.users-scan-line{
+    position:absolute;
+    left:0;
+    top:-4px;
+
+    width:100%;
+    height:3px;
+
+    z-index:3;
+    pointer-events:none;
+
+    background:linear-gradient(
+        90deg,
+        transparent,
+        rgba(0,229,255,.18),
+        #00e5ff,
+        rgba(0,229,255,.18),
+        transparent
+    );
+
+    box-shadow:
+        0 0 10px rgba(0,229,255,.9),
+        0 0 25px rgba(0,140,255,.55);
+
+    animation:userScanMove 7s linear infinite;
+}
+
+@keyframes userScanMove{
+    0%{
+        top:-4px;
+        opacity:0;
+    }
+
+    10%{
+        opacity:1;
+    }
+
+    90%{
+        opacity:1;
+    }
+
+    100%{
+        top:100%;
+        opacity:0;
+    }
+}
+
+/*==========================
+ Floating Scan Dots
+==========================*/
+
+.scan-dot{
+    position:absolute;
+    z-index:2;
+
+    width:8px;
+    height:8px;
+
+    border-radius:50%;
+    pointer-events:none;
+
+    background:#00e5ff;
+
+    box-shadow:
+        0 0 9px #00e5ff,
+        0 0 20px rgba(0,229,255,.8);
+
+    animation:userDotMove 8s ease-in-out infinite;
+}
+
+.dot1{
+    top:22%;
+    left:48%;
+}
+
+.dot2{
+    top:68%;
+    left:62%;
+
+    animation-delay:2.5s;
+}
+
+.dot3{
+    top:34%;
+    right:13%;
+
+    animation-delay:5s;
+}
+
+@keyframes userDotMove{
+    0%,
+    100%{
+        transform:translate(0,0) scale(.8);
+        opacity:.25;
+    }
+
+    50%{
+        transform:translate(70px,-35px) scale(1.25);
+        opacity:1;
+    }
+}
+
+/*==========================
+ User Icon Pulse
+==========================*/
+
+.users-icon-pulse{
+    position:relative;
+
+    width:170px;
+    height:170px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    animation:userIconFloat 4s ease-in-out infinite;
+}
+
+.users-icon-pulse i{
+    position:relative;
+    z-index:3;
+
+    color:#00e5ff;
+    font-size:100px;
+
+    filter:
+        drop-shadow(0 0 12px rgba(0,229,255,.85))
+        drop-shadow(0 0 30px rgba(0,140,255,.55));
+}
+
+.users-icon-pulse::before,
+.users-icon-pulse::after{
+    content:"";
+
+    position:absolute;
+
+    width:120px;
+    height:120px;
+
+    border:1px solid rgba(0,229,255,.48);
+    border-radius:50%;
+
+    animation:userPulseRing 3s ease-out infinite;
+}
+
+.users-icon-pulse::after{
+    animation-delay:1.5s;
+}
+
+@keyframes userPulseRing{
+    from{
+        transform:scale(.55);
+        opacity:.8;
+    }
+
+    to{
+        transform:scale(1.65);
+        opacity:0;
+    }
+}
+
+@keyframes userIconFloat{
+    0%,
+    100%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-12px);
+    }
+}
+
+/*==========================
+ Summary Cards
+==========================*/
+
+.summary-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+
+    gap:20px;
+    margin-bottom:30px;
+}
+
+.summary-item{
+    background:#12233d;
+
+    padding:25px;
+
+    border-radius:16px;
+    text-align:center;
+
+    transition:.35s;
+
+    border:1px solid rgba(0,229,255,.12);
+}
+
+.summary-item:hover{
+    transform:translateY(-6px);
+
+    box-shadow:
+        0 15px 30px rgba(0,229,255,.15);
+}
+
+.summary-item h5{
+    color:#9fb4cb;
+    font-weight:500;
+
+    margin-bottom:12px;
+}
+
+.summary-item h2{
+    color:#fff;
+    font-size:32px;
+}
+
+.online{
+    color:#00d084;
+    font-weight:700;
+}
+
+/*==========================
+ Card
+==========================*/
+
+.chart-card{
+    background:#12233d;
+
+    padding:25px;
+
+    border-radius:18px;
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,.25);
+}
+
+.card-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    margin-bottom:20px;
+}
+
+.card-header h3{
+    display:flex;
+    align-items:center;
+
+    gap:10px;
+
+    color:#fff;
+    font-size:22px;
+}
+
+.card-header i{
+    color:#00e5ff;
+}
+
+/*==========================
+ Table
+==========================*/
+
+.recent-table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+.recent-table thead{
+    background:#0d1b30;
+}
+
+.recent-table th{
+    padding:16px;
+
+    text-align:left;
+
+    color:#00e5ff;
+    font-size:15px;
+}
+
+.recent-table td{
+    padding:16px;
+
+    border-top:
+        1px solid rgba(255,255,255,.06);
+
+    color:#d8e5f2;
+    font-size:14px;
+}
+
+.recent-table tbody tr{
+    transition:.3s;
+}
+
+.recent-table tbody tr:hover{
+    background:#162d4d;
+}
+
+/*==========================
+ Buttons
+==========================*/
+
+button{
+    cursor:pointer;
+
+    transition:.3s;
+    font-weight:600;
+}
+
+button:hover{
+    transform:translateY(-2px);
+}
+
+.delete-btn{
+    padding:9px 18px;
+
+    border:none;
+    border-radius:8px;
+
+    background:#ff4d6d;
+    color:white;
+}
+
+.delete-btn:hover{
+    background:#ff3459;
+}
+
+.protected-btn{
+    padding:9px 18px;
+
+    border:none;
+    border-radius:8px;
+
+    background:#4a5568;
+    color:#fff;
+
+    cursor:not-allowed;
+}
+
+/*==========================
+ Role Badges
+==========================*/
+
+.admin-badge{
+    display:inline-block;
+
+    padding:6px 14px;
+
+    border-radius:20px;
+
+    background:#00c6ff;
+    color:#fff;
+
+    font-size:13px;
+    font-weight:600;
+}
+
+.user-badge{
+    display:inline-block;
+
+    padding:6px 14px;
+
+    border-radius:20px;
+
+    background:#324968;
+    color:#fff;
+
+    font-size:13px;
+    font-weight:600;
+}
+
+/*==========================
+ Responsive
+==========================*/
+
+@media(max-width:1100px){
+
+    .summary-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+}
+
+@media(max-width:768px){
+
+    .hero-section{
+        flex-direction:column;
+
+        text-align:center;
+        gap:20px;
+
+        padding:35px 20px;
+    }
+
+    .hero-left,
+    .hero-right{
+        width:100%;
+    }
+
+    .hero-left h1{
+        font-size:34px;
+    }
+
+    .summary-grid{
+        grid-template-columns:1fr;
+    }
+
+    .chart-card{
+        overflow-x:auto;
+    }
+
+    .recent-table{
+        min-width:750px;
+    }
+
+}
+/* =========================================
+   FINAL USER HERO EFFECTS
+========================================= */
+
+.hero-section{
+    position:relative;
+    overflow:hidden;
+}
+
+/* Keep text and icon above all effects */
+
+.hero-section .hero-left,
+.hero-section .hero-right{
+    position:relative;
+    z-index:10;
+}
+
+/* Animated cyber grid */
+
+.users-hero-grid{
+    position:absolute;
+    inset:0;
+
+    z-index:0;
+    pointer-events:none;
+
+    opacity:.16;
+
+    background-image:
+        linear-gradient(
+            rgba(0,229,255,.14) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(0,229,255,.14) 1px,
+            transparent 1px
+        );
+
+    background-size:42px 42px;
+
+    animation:usersGridAnimation 18s linear infinite;
+}
+
+@keyframes usersGridAnimation{
+
+    from{
+        background-position:0 0;
+    }
+
+    to{
+        background-position:42px 42px;
+    }
+
+}
+
+/* Moving scanner line */
+
+.users-scan-line{
+    position:absolute;
+
+    top:-4px;
+    left:0;
+
+    width:100%;
+    height:3px;
+
+    z-index:3;
+    pointer-events:none;
+
+    background:linear-gradient(
+        90deg,
+        transparent,
+        rgba(0,229,255,.20),
+        rgba(0,229,255,.95),
+        rgba(0,229,255,.20),
+        transparent
+    );
+
+    box-shadow:
+        0 0 10px rgba(0,229,255,.90),
+        0 0 24px rgba(0,140,255,.60);
+
+    animation:usersScannerAnimation 7s linear infinite;
+}
+
+@keyframes usersScannerAnimation{
+
+    0%{
+        top:-4px;
+        opacity:0;
+    }
+
+    10%{
+        opacity:1;
+    }
+
+    90%{
+        opacity:1;
+    }
+
+    100%{
+        top:100%;
+        opacity:0;
+    }
+
+}
+
+/* Floating glowing particles */
+
+.users-particle{
+    position:absolute;
+
+    width:8px;
+    height:8px;
+
+    z-index:2;
+    pointer-events:none;
+
+    border-radius:50%;
+
+    background:#00e5ff;
+
+    box-shadow:
+        0 0 8px #00e5ff,
+        0 0 20px rgba(0,229,255,.85);
+
+    animation:usersParticleAnimation 7s ease-in-out infinite;
+}
+
+.users-dot-one{
+    top:20%;
+    left:42%;
+}
+
+.users-dot-two{
+    top:70%;
+    left:58%;
+
+    animation-delay:2s;
+}
+
+.users-dot-three{
+    top:30%;
+    right:12%;
+
+    animation-delay:4s;
+}
+
+@keyframes usersParticleAnimation{
+
+    0%,
+    100%{
+        transform:translate(0,0) scale(.7);
+        opacity:.25;
+    }
+
+    50%{
+        transform:translate(65px,-35px) scale(1.25);
+        opacity:1;
+    }
+
+}
+
+/* Soft glow behind the hero */
+
+.hero-section::after{
+    content:"";
+
+    position:absolute;
+
+    width:260px;
+    height:260px;
+
+    top:-90px;
+    right:80px;
+
+    z-index:1;
+    pointer-events:none;
+
+    border-radius:50%;
+
+    background:rgba(0,229,255,.16);
+
+    filter:blur(70px);
+
+    animation:usersGlowAnimation 6s ease-in-out infinite;
+}
+
+@keyframes usersGlowAnimation{
+
+    0%,
+    100%{
+        transform:translateY(0) scale(1);
+        opacity:.35;
+    }
+
+    50%{
+        transform:translateY(25px) scale(1.15);
+        opacity:.65;
+    }
+
+}
+/* =========================================
+   VISIBLE MOVING EFFECT FOR USER HERO
+========================================= */
+
+.hero-section{
+    position:relative !important;
+    overflow:hidden !important;
+}
+
+/* Keep all original content visible */
+
+.hero-section > *{
+    position:relative;
+    z-index:3;
+}
+
+/* Moving diagonal cyber light */
+
+.hero-section::before{
+    content:"";
+
+    position:absolute;
+
+    top:-100%;
+    left:-35%;
+
+    width:45%;
+    height:300%;
+
+    z-index:1;
+    pointer-events:none;
+
+    background:linear-gradient(
+        90deg,
+        transparent,
+        rgba(0,229,255,.08),
+        rgba(0,229,255,.32),
+        rgba(255,255,255,.18),
+        rgba(0,229,255,.32),
+        rgba(0,229,255,.08),
+        transparent
+    );
+
+    transform:rotate(18deg);
+
+    filter:blur(5px);
+
+    animation:userHeroLightMove 6s linear infinite;
+}
+
+@keyframes userHeroLightMove{
+
+    0%{
+        left:-45%;
+    }
+
+    100%{
+        left:115%;
+    }
+
+}
+
+/* Moving horizontal scanner glow */
+
+.hero-section::after{
+    content:"";
+
+    position:absolute;
+
+    left:0;
+    top:-60px;
+
+    width:100%;
+    height:60px;
+
+    z-index:2;
+    pointer-events:none;
+
+    background:linear-gradient(
+        to bottom,
+        transparent,
+        rgba(0,229,255,.10),
+        rgba(0,229,255,.28),
+        rgba(0,229,255,.08),
+        transparent
+    );
+
+    box-shadow:
+        0 0 20px rgba(0,229,255,.35);
+
+    animation:userHeroScanner 5s linear infinite;
+}
+
+@keyframes userHeroScanner{
+
+    0%{
+        top:-60px;
+    }
+
+    100%{
+        top:100%;
+    }
+
+}
+
+/* Float the users icon */
+
+.users-icon-pulse{
+    animation:userIconMoving 3.5s ease-in-out infinite !important;
+}
+
+@keyframes userIconMoving{
+
+    0%,
+    100%{
+        transform:translateY(0) scale(1);
+    }
+
+    50%{
+        transform:translateY(-14px) scale(1.06);
+    }
+
+}

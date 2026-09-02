@@ -1,0 +1,46 @@
+<nav class="top-navbar">
+
+    <div class="nav-left">
+
+        <h2>AI Threat Detection System</h2>
+        <p>Security Operations Center</p>
+
+    </div>
+
+    <div class="nav-center">
+
+        <input
+            type="text"
+            placeholder="Search files, threats, reports..."
+            class="search-box">
+
+    </div>
+
+    <div class="nav-right">
+
+        <span class="status">
+            🟢 System Online
+        </span>
+
+        <div class="user">
+
+            <div class="avatar">
+{% if current_user.is_authenticated %}
+    {{ current_user.username[0]|upper }}
+{% else %}
+    G
+{% endif %}
+            </div>
+
+            <div>
+
+                <strong>{{ current_user.username }}</strong><br>
+                <small>Administrator</small>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</nav>

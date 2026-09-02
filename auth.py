@@ -1,0 +1,20 @@
+from flask_login import UserMixin
+
+class User(UserMixin):
+
+    def __init__(self, username, role):
+        self.id = username
+        self.username = username
+        self.role = role
+
+
+users = {
+    "admin": {
+        "password": "admin123",
+        "role": "Admin"
+    },
+    "sakeena": {
+        "password": "infosys2026",
+        "role": "Analyst"
+    }
+}

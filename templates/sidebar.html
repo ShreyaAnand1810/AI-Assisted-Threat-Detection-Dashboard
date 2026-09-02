@@ -1,0 +1,68 @@
+<div class="sidebar">
+
+    <div class="logo">
+
+        <h2>AI Threat</h2>
+        <span>Detection System</span>
+
+    </div>
+
+    <ul class="menu">
+
+        <li>
+            <a href="{{ url_for('dashboard') }}">
+                <i class="fa-solid fa-house"></i>
+                <span>Dashboard</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="{{ url_for('upload') }}">
+                <i class="fa-solid fa-upload"></i>
+                <span>Upload</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="{{ url_for('history') }}">
+                <i class="fa-solid fa-clock-rotate-left"></i>
+                <span>History</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="{{ url_for('security_tools') }}">
+                <i class="fa-solid fa-toolbox"></i>
+                <span>Security Tools</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="{{ url_for('threat_intel') }}">
+                <i class="fa-solid fa-globe"></i>
+                <span>Threat Intelligence</span>
+            </a>
+        </li>
+<li>
+    <a href="{{ url_for('qr_scan') }}">
+        <i class="fa-solid fa-qrcode"></i>
+        <span>QR Scanner</span>
+    </a>
+</li>
+        <li>
+            <a href="{{ url_for('users_page') }}">
+                <i class="fa-solid fa-users"></i>
+                <span>Users</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="{{ url_for('logout') }}">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <span>Logout</span>
+            </a>
+        </li>
+
+    </ul>
+
+</div>

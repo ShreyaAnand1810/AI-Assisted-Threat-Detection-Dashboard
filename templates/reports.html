@@ -1,0 +1,238 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="dashboard-wrapper">
+
+    <!-- Hero -->
+
+    <div class="hero-section">
+
+        <div class="hero-left">
+
+            <h1>Security Reports</h1>
+
+            <p>
+                Generate professional AI-powered cybersecurity reports,
+                export PDF/CSV and analyze scan history.
+            </p>
+
+        </div>
+
+        <div class="hero-right">
+
+            <i class="fas fa-file-shield fa-5x"></i>
+
+        </div>
+
+    </div>
+
+    <!-- Summary -->
+
+    <div class="summary-grid">
+
+        <div class="summary-item">
+
+            <h5>Total Scans</h5>
+
+            <h2>{{ stats.total }}</h2>
+
+        </div>
+
+        <div class="summary-item">
+
+            <h5>Safe Files</h5>
+
+            <h2>{{ stats.safe }}</h2>
+
+        </div>
+
+        <div class="summary-item">
+
+            <h5>Threats</h5>
+
+            <h2>{{ stats.malicious }}</h2>
+
+        </div>
+
+        <div class="summary-item">
+
+            <h5>Security Score</h5>
+
+            <h2>{{ score }}/100</h2>
+
+        </div>
+
+    </div>
+
+    <!-- Export -->
+
+    <div class="chart-grid">
+
+        <div class="chart-card">
+
+            <div class="card-header">
+
+                <h3>
+
+                    <i class="fas fa-download"></i>
+
+                    Export Reports
+
+                </h3>
+
+            </div>
+
+            <button
+                class="primary-btn"
+                onclick="downloadPDF()">
+
+                <i class="fas fa-file-pdf"></i>
+
+                Export PDF
+
+            </button>
+
+            <br><br>
+
+            <button
+                class="secondary-btn"
+                onclick="downloadCSV()">
+
+                <i class="fas fa-file-csv"></i>
+
+                Export CSV
+
+            </button>
+
+            <br><br>
+
+            <button
+                class="secondary-btn"
+                onclick="window.print()">
+
+                <i class="fas fa-print"></i>
+
+                Print Report
+
+            </button>
+
+        </div>
+
+        <!-- AI Summary -->
+
+        <div class="chart-card">
+
+            <div class="card-header">
+
+                <h3>
+
+                    <i class="fas fa-robot"></i>
+
+                    AI Security Summary
+
+                </h3>
+
+            </div>
+
+            <div id="aiReport">
+
+                <p>
+
+                    Total files scanned:
+                    <strong>{{ stats.total }}</strong>
+
+                </p>
+
+                <p>
+
+                    Safe files:
+                    <strong>{{ stats.safe }}</strong>
+
+                </p>
+
+                <p>
+
+                    Threats detected:
+                    <strong>{{ stats.malicious }}</strong>
+
+                </p>
+
+                <p>
+
+                    Security score:
+                    <strong>{{ score }}/100</strong>
+
+                </p>
+
+                {% if stats.critical > 0 %}
+
+                <p style="color:#ff4d6d">
+
+                    🚨 Critical threats require immediate action.
+
+                </p>
+
+                {% else %}
+
+                <p style="color:#00d084">
+
+                    ✅ Overall system security is stable.
+
+                </p>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Charts -->
+
+    <div class="chart-grid">
+
+        <div class="chart-card">
+
+            <div class="card-header">
+
+                <h3>
+
+                    <i class="fas fa-chart-line"></i>
+
+                    Daily Scan Activity
+
+                </h3>
+
+            </div>
+
+            {{ line|safe }}
+
+        </div>
+
+        <div class="chart-card">
+
+            <div class="card-header">
+
+                <h3>
+
+                    <i class="fas fa-chart-pie"></i>
+
+                    Threat Distribution
+
+                </h3>
+
+            </div>
+
+            {{ pie|safe }}
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="{{ url_for('static', filename='js/reports.js') }}"></script>
+
+{% endblock %}

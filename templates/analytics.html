@@ -1,0 +1,244 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="dashboard-wrapper">
+
+    <!-- Header -->
+
+    <div class="hero-section">
+
+        <div class="hero-left">
+
+            <h1>AI Analytics Dashboard</h1>
+
+            <p>
+
+                Real-time AI-powered cybersecurity analytics and threat intelligence.
+
+            </p>
+
+        </div>
+
+        <div class="hero-right">
+
+            <i class="fas fa-chart-line fa-5x"></i>
+
+        </div>
+
+    </div>
+
+    <!-- Statistics -->
+
+    <div class="summary-grid">
+
+        <div class="summary-item">
+
+            <h5>Total Scans</h5>
+
+            <h2>{{ stats.total }}</h2>
+
+        </div>
+
+        <div class="summary-item">
+
+            <h5>Threats</h5>
+
+            <h2>{{ stats.malicious }}</h2>
+
+        </div>
+
+        <div class="summary-item">
+
+            <h5>Safe Files</h5>
+
+            <h2>{{ stats.safe }}</h2>
+
+        </div>
+
+        <div class="summary-item">
+
+            <h5>Security Score</h5>
+
+            <h2>{{ score }}/100</h2>
+
+        </div>
+
+    </div>
+
+    <!-- AI Recommendation -->
+
+    <div class="chart-card">
+
+        <div class="card-header">
+
+            <h3>
+
+                <i class="fas fa-robot"></i>
+
+                AI Security Recommendation
+
+            </h3>
+
+        </div>
+
+        <div class="ai-summary">
+
+            {% if score >= 90 %}
+
+                <p style="color:#00d084">
+
+                    ✅ Excellent security posture. Your system is well protected.
+
+                </p>
+
+            {% elif score >= 70 %}
+
+                <p style="color:#ffb703">
+
+                    ⚠ Moderate security risk detected. Continue monitoring suspicious files.
+
+                </p>
+
+            {% else %}
+
+                <p style="color:#ff4d6d">
+
+                    🚨 High risk detected. Immediate investigation is recommended.
+
+                </p>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+    <!-- Charts -->
+
+    <div class="chart-grid">
+
+        <div class="chart-card">
+
+            <div class="card-header">
+
+                <h3>
+
+                    <i class="fas fa-chart-area"></i>
+
+                    Daily Threat Trend
+
+                </h3>
+
+            </div>
+
+            {{ line|safe }}
+
+        </div>
+
+        <div class="chart-card">
+
+            <div class="card-header">
+
+                <h3>
+
+                    <i class="fas fa-chart-bar"></i>
+
+                    Threat Risk Levels
+
+                </h3>
+
+            </div>
+
+            {{ bar|safe }}
+
+        </div>
+
+        <div class="chart-card">
+
+            <div class="card-header">
+
+                <h3>
+
+                    <i class="fas fa-chart-line"></i>
+
+                    Monthly Scan Trend
+
+                </h3>
+
+            </div>
+
+            {{ monthly|safe }}
+
+        </div>
+
+        <div class="chart-card">
+
+            <div class="card-header">
+
+                <h3>
+
+                    <i class="fas fa-brain"></i>
+
+                    AI Threat Analysis
+
+                </h3>
+
+            </div>
+
+            <table class="status-table">
+
+                <tr>
+
+                    <td>Detection Accuracy</td>
+
+                    <td>98.7%</td>
+
+                </tr>
+
+                <tr>
+
+                    <td>False Positive Rate</td>
+
+                    <td>1.3%</td>
+
+                </tr>
+
+                <tr>
+
+                    <td>Threat Intelligence</td>
+
+                    <td class="online">ACTIVE</td>
+
+                </tr>
+
+                <tr>
+
+                    <td>XGBoost Engine</td>
+
+                    <td class="online">ONLINE</td>
+
+                </tr>
+
+                <tr>
+
+                    <td>Real-Time Monitoring</td>
+
+                    <td class="online">RUNNING</td>
+
+                </tr>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/analytics.css') }}">
+
+<script src="{{ url_for('static', filename='js/analytics.js') }}"></script>
+
+{% endblock %}

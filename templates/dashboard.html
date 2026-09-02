@@ -1,0 +1,1548 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="dashboard-wrapper">
+    
+   
+<!-- ================= ADVANCED HERO ================= -->
+<!-- ================= PREMIUM TOP CARDS ================= -->
+
+<div class="premium-top-grid">
+
+    <div class="premium-card">
+        <div class="premium-icon">
+            <i class="fa-solid fa-user-shield"></i>
+        </div>
+
+        <h4>Administrator</h4>
+        <p>{{ user }}</p>
+
+        <span>{{ current_user.role }}</span>
+    </div>
+
+    <div class="premium-card">
+
+        <div class="premium-icon">
+            <i class="fa-solid fa-satellite-dish"></i>
+        </div>
+
+        <h4>System Status</h4>
+
+        <p class="online-text">
+            ● ONLINE
+        </p>
+
+        <span>All Services Running</span>
+
+    </div>
+
+    <div class="premium-card">
+
+        <div class="premium-icon">
+            <i class="fa-solid fa-brain"></i>
+        </div>
+
+        <h4>AI Engine</h4>
+
+        <p>XGBoost</p>
+
+        <span>{{ score }}% Confidence</span>
+
+    </div>
+
+</div>
+<div class="hero-section hero-v2">
+
+    <canvas id="heroParticles"></canvas>
+
+    <!-- CYBER BACKGROUND -->
+
+    <div class="hero-matrix"></div>
+    <div class="hero-grid-lines"></div>
+
+    <!-- LEFT CONTENT -->
+
+    <div class="hero-v2-left">
+
+        <div class="hero-badge">
+            <i class="fa-solid fa-shield-halved"></i>
+            AI POWERED SECURITY
+        </div>
+
+        <h1>
+            Intelligent Threat
+            <span>Detection</span>
+            Command Center
+        </h1>
+
+        <p>
+            Monitor threats, analyse uploaded files and protect your system
+            using real-time AI security intelligence.
+        </p>
+
+        <div class="hero-buttons">
+
+            <a href="{{ url_for('upload') }}" class="primary-btn">
+                <i class="fa-solid fa-cloud-arrow-up"></i>
+                Scan New File
+            </a>
+
+            <a href="{{ url_for('history') }}" class="secondary-btn">
+                <i class="fa-solid fa-clock-rotate-left"></i>
+                View Scan History
+            </a>
+
+        </div>
+
+        <div class="hero-feature-row">
+
+            <div class="hero-feature-card">
+                <i class="fa-solid fa-wave-square"></i>
+
+                <div>
+                    <strong>Real-Time</strong>
+                    <span>Monitoring</span>
+                </div>
+            </div>
+
+            <div class="hero-feature-card">
+                <i class="fa-solid fa-brain"></i>
+
+                <div>
+                    <strong>AI Engine</strong>
+                    <span>XGBoost</span>
+                </div>
+            </div>
+
+            <div class="hero-feature-card">
+                <i class="fa-solid fa-shield-halved"></i>
+
+                <div>
+                    <strong>24/7</strong>
+                    <span>Protection</span>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- CENTER SHIELD -->
+
+    <div class="hero-v2-center">
+
+        <div class="security-orbit">
+
+            <div class="orbit-ring ring-one"></div>
+            <div class="orbit-ring ring-two"></div>
+            <div class="orbit-ring ring-three"></div>
+
+            <div class="energy-orbit energy-orbit-one"></div>
+            <div class="energy-orbit energy-orbit-two"></div>
+
+            <span class="energy-dot dot-one"></span>
+            <span class="energy-dot dot-two"></span>
+            <span class="energy-dot dot-three"></span>
+            <span class="energy-dot dot-four"></span>
+
+            <div class="new-hologram">
+
+    <div class="new-orbit orbit-a"></div>
+    <div class="new-orbit orbit-b"></div>
+
+    <div class="new-shield">
+        <div class="new-scan-line"></div>
+
+        <img
+            src="{{ url_for('static', filename='images/logo.png') }}"
+            alt="AI Threat Detection Logo"
+        >
+    </div>
+
+    <div class="new-light-beam"></div>
+    <div class="new-platform"></div>
+
+</div>
+
+            <div class="hologram-beam"></div>
+
+            <div class="hologram-platform">
+                <div class="platform-ring platform-ring-one"></div>
+                <div class="platform-ring platform-ring-two"></div>
+                <div class="platform-ring platform-ring-three"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- RIGHT INFORMATION CARDS -->
+
+    <div class="hero-v2-right">
+
+        <div class="hero-data-card threat-level-card">
+
+            <div class="data-card-top">
+                <span>THREAT LEVEL</span>
+                <i class="fa-solid fa-chart-line"></i>
+            </div>
+
+            {% if stats.critical > 0 %}
+                <h2 class="danger-text">CRITICAL</h2>
+            {% elif stats.malicious > 0 %}
+                <h2 class="warning-text">MEDIUM</h2>
+            {% else %}
+                <h2 class="safe-text">LOW</h2>
+            {% endif %}
+
+            <div class="mini-line-chart">
+                <span></span>
+            </div>
+
+        </div>
+
+        <div class="hero-data-card">
+
+            <div class="data-card-icon cyan-icon">
+                <i class="fa-solid fa-file-shield"></i>
+            </div>
+
+            <div>
+                <span>FILES SCANNED</span>
+                <h2>{{ stats.total }}</h2>
+                <small>AI analysed files</small>
+            </div>
+
+        </div>
+
+        <div class="hero-data-card">
+
+            <div class="confidence-circle">
+                <span>{{ score }}%</span>
+            </div>
+
+            <div>
+                <span>AI CONFIDENCE</span>
+                <h2>{{ score }}%</h2>
+                <small class="safe-text">High Confidence</small>
+            </div>
+
+        </div>
+
+        <div class="hero-data-card">
+
+            <div class="data-card-icon purple-icon">
+                <i class="fa-solid fa-shield"></i>
+            </div>
+
+            <div>
+                <span>ACTIVE SHIELDS</span>
+                <h2>5</h2>
+                <small>Systems Protected</small>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ENGINE STATUS -->
+
+    <div class="engine-status-card">
+
+        <div class="engine-icon">
+            <i class="fa-solid fa-microchip"></i>
+        </div>
+
+        <div>
+            <span>AI ENGINE STATUS</span>
+            <strong>RUNNING</strong>
+            <small>XGBoost Model Active</small>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ================= WELCOME ================= -->
+
+<div class="welcome-panel">
+
+<div class="welcome-left">
+
+<div class="profile-avatar">
+
+<img
+    src="https://ui-avatars.com/api/?name={{ user }}&background=0D8ABC&color=ffffff&bold=true&size=128"
+    alt="{{ user }}"
+>
+
+</div>
+
+<div class="welcome-info">
+
+<h2>
+
+Welcome Back,
+
+<span>{{ user }}</span>
+
+</h2>
+
+<p>
+
+Role :
+<strong>{{ current_user.role }}</strong>
+
+</p>
+
+<p class="welcome-desc">
+
+Your AI security platform is active and continuously monitoring uploaded files for malicious threats.
+
+</p>
+
+</div>
+
+</div>
+
+<div class="welcome-right">
+
+<div class="status-box">
+
+<div class="status-indicator"></div>
+
+<div>
+
+<h5>System Status</h5>
+
+<h3>ONLINE</h3>
+
+</div>
+
+</div>
+
+<div class="status-box">
+
+<i class="fa-solid fa-shield-halved"></i>
+
+<div>
+
+<h5>Protection</h5>
+
+<h3>ACTIVE</h3>
+
+</div>
+
+</div>
+
+<div class="status-box">
+
+<i class="fa-solid fa-brain"></i>
+
+<div>
+
+<h5>AI Engine</h5>
+
+<h3>XGBoost</h3>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ================= STATISTICS ================= -->
+
+<div class="stats-grid">
+
+<div class="stat-card total">
+
+<div class="card-icon">
+
+<i class="fa-solid fa-folder-tree"></i>
+
+</div>
+
+<div>
+
+<h6>Total Scans</h6>
+
+<h2 class="counter">
+
+{{ stats.total }}
+
+</h2>
+
+<p>
+
+Files Analysed
+
+</p>
+
+</div>
+
+</div>
+
+<div class="stat-card safe">
+
+<div class="card-icon">
+
+<i class="fa-solid fa-shield-check"></i>
+
+</div>
+
+<div>
+
+<h6>Safe Files</h6>
+
+<h2 class="counter">
+
+{{ stats.safe }}
+
+</h2>
+
+<p>
+
+No Threats
+
+</p>
+
+</div>
+
+</div>
+
+<div class="stat-card threat">
+
+<div class="card-icon">
+
+<i class="fa-solid fa-virus"></i>
+
+</div>
+
+<div>
+
+<h6>Threats Found</h6>
+
+<h2 class="counter">
+
+{{ stats.malicious }}
+
+</h2>
+
+<p>
+
+Detected Malware
+
+</p>
+
+</div>
+
+</div>
+
+<div class="stat-card critical">
+
+<div class="card-icon">
+
+<i class="fa-solid fa-triangle-exclamation"></i>
+
+</div>
+
+<div>
+
+<h6>Critical Threats</h6>
+
+<h2 class="counter">
+
+{{ stats.critical }}
+
+</h2>
+
+<p>
+
+Immediate Attention
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ================= AI SUMMARY ================= -->
+
+<div class="ai-summary-card">
+
+<div class="summary-header">
+
+<div>
+
+<h2>
+
+AI SECURITY ANALYSIS
+
+</h2>
+
+<p>
+
+Real-time intelligent assessment
+
+</p>
+
+</div>
+
+<div class="ai-score">
+
+{{ score }}
+
+<span>%</span>
+
+</div>
+
+</div>
+
+<div class="summary-grid">
+
+<div class="summary-item">
+
+<h5>Total Files</h5>
+
+<h2>{{ stats.total }}</h2>
+
+</div>
+
+<div class="summary-item">
+
+<h5>Threat Rate</h5>
+
+<h2>{{ rate }}%</h2>
+
+</div>
+
+<div class="summary-item">
+
+<h5>Health Score</h5>
+
+<h2>{{ score }}/100</h2>
+
+</div>
+
+<div class="summary-item">
+
+<h5>Last Scan</h5>
+
+<h2>{{ stats.last_scan }}</h2>
+
+</div>
+
+</div>
+
+{% if stats.critical > 0 %}
+
+<div class="alert critical-alert">
+
+🚨 Critical malware detected. Immediate action required.
+
+</div>
+
+{% elif stats.malicious > 0 %}
+
+<div class="alert warning-alert">
+
+⚠ Suspicious files detected. Review recommended.
+
+</div>
+
+{% else %}
+
+<div class="alert success-alert">
+
+✅ System secure. No active threats detected.
+
+</div>
+
+{% endif %}
+
+</div>
+
+    <!-- ================= Charts ================= -->
+
+    <div class="chart-grid">
+
+  <!-- ================= LEFT COLUMN ================= -->
+
+<div class="left-column">
+
+    <!-- Live Threat Map -->
+
+    <div class="chart-card world-card">
+
+        <div class="card-header">
+
+            <h3>
+                <i class="fa-solid fa-earth-americas"></i>
+                Global Threat Monitor
+            </h3>
+
+            <span class="live-badge">
+                ● LIVE
+            </span>
+
+        </div>
+
+        <div class="world-container">
+
+           <img src="{{ url_for('static',
+filename='images/world-map.png') }}">
+             
+
+            <div class="radar-circle"></div>
+            <div class="radar-circle delay1"></div>
+            <div class="radar-circle delay2"></div>
+
+            <div class="location us"></div>
+            <div class="location uk"></div>
+            <div class="location india"></div>
+            
+
+        </div>
+
+        <div class="world-footer">
+
+            <div>
+
+                <small>Active Threats</small>
+
+                <h3>{{ stats.malicious }}</h3>
+
+            </div>
+
+            <div>
+
+                <small>Countries</small>
+
+                <h3>127</h3>
+
+            </div>
+
+            <div>
+
+                <small>Status</small>
+
+                <h3 class="green">Protected</h3>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Daily Scan -->
+
+    <div class="chart-card">
+
+        <div class="card-header">
+
+            <h3>
+
+                <i class="fa-solid fa-chart-line"></i>
+
+                Daily Scan Activity
+
+            </h3>
+
+        </div>
+
+        <div class="plot">
+
+            {{ line|safe }}
+
+        </div>
+
+    </div>
+
+    <!-- Monthly Trend -->
+
+    <div class="chart-card">
+
+        <div class="card-header">
+
+            <h3>
+
+                <i class="fa-solid fa-calendar-days"></i>
+
+                Monthly Scan Trend
+
+            </h3>
+
+        </div>
+
+        <div class="plot">
+
+            {{ monthly_chart|safe }}
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ================= RIGHT COLUMN ================= -->
+
+<div class="right-column">
+
+    <!-- Threat Distribution -->
+
+    <div class="chart-card">
+
+        <div class="card-header">
+
+            <h3>
+
+                <i class="fa-solid fa-chart-pie"></i>
+
+                Threat Distribution
+
+            </h3>
+
+        </div>
+
+        {{ pie|safe }}
+
+    </div>
+
+    <!-- Risk -->
+
+    <div class="chart-card">
+
+        <div class="card-header">
+
+            <h3>
+
+                <i class="fa-solid fa-triangle-exclamation"></i>
+
+                Risk Distribution
+
+            </h3>
+
+        </div>
+
+        {{ bar|safe }}
+
+    </div>
+
+    <!-- Extensions -->
+
+    <div class="chart-card">
+
+        <div class="card-header">
+
+            <h3>
+
+                <i class="fa-solid fa-file-code"></i>
+
+                Top File Extensions
+
+            </h3>
+
+        </div>
+
+        {{ extension_chart|safe }}
+
+    </div>
+
+    <!-- Detection Rate -->
+
+    <div class="mini-cards">
+
+        <div class="mini-card">
+
+            <h5>Detection Rate</h5>
+
+            <h2>{{ rate }}%</h2>
+
+        </div>
+
+        <div class="mini-card">
+
+            <h5>Health Score</h5>
+
+            <h2>{{ score }}/100</h2>
+
+        </div>
+
+    </div>
+
+</div>
+
+</div>
+
+<!-- ================= TABLE SECTION START ================= -->
+
+<div class="bottom-grid">
+    <!-- ================= RECENT SCANS ================= -->
+
+<div class="chart-card recent-card">
+
+    <div class="card-header">
+
+        <h3>
+
+            <i class="fa-solid fa-clock-rotate-left"></i>
+
+            Recent Scan Activity
+
+        </h3>
+
+    </div>
+
+    <table class="recent-table">
+
+        <thead>
+
+            <tr>
+
+                <th>File Name</th>
+
+                <th>Prediction</th>
+
+                <th>Risk</th>
+
+                <th>Scan Time</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+        {% for scan in recent %}
+
+            <tr>
+
+                <td>{{ scan.filename }}</td>
+
+                <td>
+
+                    {% if scan.prediction=="Safe" %}
+
+                        <span class="safe-badge">
+
+                            {{ scan.prediction }}
+
+                        </span>
+
+                    {% else %}
+
+                        <span class="danger-badge">
+
+                            {{ scan.prediction }}
+
+                        </span>
+
+                    {% endif %}
+
+                </td>
+
+                <td>{{ scan.risk }}</td>
+
+                <td>{{ scan.scan_time }}</td>
+
+            </tr>
+
+        {% endfor %}
+
+        </tbody>
+
+    </table>
+
+</div>
+
+<!-- ================= SYSTEM STATUS ================= -->
+
+<div class="chart-card status-card">
+
+    <div class="card-header">
+
+        <h3>
+
+            <i class="fa-solid fa-server"></i>
+
+            AI System Status
+
+        </h3>
+
+    </div>
+
+    <div class="status-grid">
+
+        <div class="status-item">
+
+            <span>AI Engine</span>
+
+            <span class="online">
+
+                ● ONLINE
+
+            </span>
+
+        </div>
+
+        <div class="status-item">
+
+            <span>XGBoost Model</span>
+
+            <span class="online">
+
+                ● ACTIVE
+
+            </span>
+
+        </div>
+
+        <div class="status-item">
+
+            <span>Database</span>
+
+            <span class="online">
+
+                ● CONNECTED
+
+            </span>
+
+        </div>
+
+        <div class="status-item">
+
+            <span>Threat Detection</span>
+
+            <span class="online">
+
+                ● RUNNING
+
+            </span>
+
+        </div>
+
+        <div class="status-item">
+
+            <span>Last Scan</span>
+
+            <span>
+
+                {{ stats.last_scan }}
+
+            </span>
+
+        </div>
+
+        <div class="status-item">
+
+            <span>Health Score</span>
+
+            <span class="health-score">
+
+                {{ score }}/100
+
+            </span>
+
+        </div>
+
+    </div>
+
+</div>
+
+</div>
+
+<!-- ================= NOTIFICATION ================= -->
+
+<div class="notification-box">
+
+    <button id="notificationBtn">
+
+        <i class="fa-solid fa-bell"></i>
+
+        <span id="notificationCount">
+
+            0
+
+        </span>
+
+    </button>
+
+</div>
+
+<script src="{{ url_for('static', filename='js/notification.js') }}"></script>
+
+</div>
+<style>
+
+/* ===== FLOATING AI HOLOGRAM ===== */
+
+.hero-v2-center .security-orbit{
+    position:relative !important;
+    min-height:460px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:visible;
+}
+
+/* Floating shield container */
+
+.hero-v2-center .hero-logo-box{
+    position:relative !important;
+    z-index:10;
+    animation:shieldFloat 3s ease-in-out infinite;
+}
+
+/* Shield glow */
+
+.hero-v2-center .security-logo{
+    width:290px !important;
+    filter:
+        drop-shadow(0 0 12px #00d9ff)
+        drop-shadow(0 0 35px rgba(0,153,255,.9))
+        drop-shadow(0 0 70px rgba(0,229,255,.45)) !important;
+
+    animation:shieldGlow 2s ease-in-out infinite;
+}
+
+/* Moving scan line */
+
+.hero-v2-center .hero-logo-box::after{
+    content:"";
+    position:absolute;
+    z-index:20;
+
+    left:10%;
+    top:10%;
+
+    width:80%;
+    height:3px;
+
+    background:#00f7ff;
+
+    box-shadow:
+        0 0 8px #00f7ff,
+        0 0 20px #00f7ff;
+
+    animation:shieldScan 2.6s linear infinite;
+}
+
+/* Rotating rings */
+
+.hero-v2-center .energy-orbit{
+    position:absolute;
+    top:50%;
+    left:50%;
+
+    border-radius:50%;
+    border:2px solid rgba(0,229,255,.65);
+
+    box-shadow:
+        0 0 12px rgba(0,229,255,.8),
+        inset 0 0 15px rgba(0,229,255,.2);
+}
+
+.hero-v2-center .energy-orbit-one{
+    width:400px;
+    height:125px;
+
+    animation:orbitOne 7s linear infinite;
+}
+
+.hero-v2-center .energy-orbit-two{
+    width:360px;
+    height:105px;
+
+    border-color:rgba(155,70,255,.7);
+
+    animation:orbitTwo 6s linear infinite;
+}
+
+/* Glowing orbit particles */
+
+.hero-v2-center .energy-dot{
+    position:absolute;
+    z-index:15;
+
+    width:9px;
+    height:9px;
+
+    border-radius:50%;
+    background:#00f7ff;
+
+    box-shadow:
+        0 0 8px #00f7ff,
+        0 0 20px #00f7ff;
+
+    animation:particlePulse 1.5s ease-in-out infinite;
+}
+
+/* Hologram beam */
+
+.hero-v2-center .hologram-beam{
+    position:absolute;
+    z-index:2;
+
+    bottom:55px;
+    left:50%;
+
+    width:200px;
+    height:250px;
+
+    transform:translateX(-50%);
+
+    background:linear-gradient(
+        to top,
+        rgba(0,229,255,.30),
+        rgba(0,153,255,.08),
+        transparent
+    );
+
+    clip-path:polygon(30% 100%,70% 100%,56% 0,44% 0);
+
+    filter:blur(4px);
+
+    animation:beamPulse 2s ease-in-out infinite;
+}
+
+/* Glowing platform */
+
+.hero-v2-center .hologram-platform{
+    position:absolute;
+    z-index:5;
+
+    left:50%;
+    bottom:35px;
+
+    width:310px;
+    height:75px;
+
+    transform:translateX(-50%);
+
+    border-radius:50%;
+    border:2px solid rgba(0,229,255,.65);
+
+    background:radial-gradient(
+        ellipse,
+        rgba(0,229,255,.25),
+        rgba(0,120,255,.08),
+        transparent 70%
+    );
+
+    box-shadow:
+        0 0 18px rgba(0,229,255,.75),
+        0 0 45px rgba(0,140,255,.45),
+        inset 0 0 22px rgba(0,229,255,.3);
+
+    animation:platformPulse 2s ease-in-out infinite;
+}
+
+/* ===== ANIMATIONS ===== */
+
+@keyframes shieldFloat{
+    0%,100%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-18px);
+    }
+}
+
+@keyframes shieldGlow{
+    0%,100%{
+        opacity:.88;
+        transform:scale(1);
+    }
+
+    50%{
+        opacity:1;
+        transform:scale(1.035);
+    }
+}
+
+@keyframes shieldScan{
+    0%{
+        top:12%;
+        opacity:0;
+    }
+
+    15%{
+        opacity:1;
+    }
+
+    85%{
+        opacity:1;
+    }
+
+    100%{
+        top:88%;
+        opacity:0;
+    }
+}
+
+@keyframes orbitOne{
+    from{
+        transform:translate(-50%,-50%) rotate(0deg);
+    }
+
+    to{
+        transform:translate(-50%,-50%) rotate(360deg);
+    }
+}
+
+@keyframes orbitTwo{
+    from{
+        transform:translate(-50%,-50%) rotate(360deg);
+    }
+
+    to{
+        transform:translate(-50%,-50%) rotate(0deg);
+    }
+}
+
+@keyframes particlePulse{
+    0%,100%{
+        transform:scale(.7);
+        opacity:.45;
+    }
+
+    50%{
+        transform:scale(1.5);
+        opacity:1;
+    }
+}
+
+@keyframes beamPulse{
+    0%,100%{
+        opacity:.35;
+        transform:translateX(-50%) scaleX(.85);
+    }
+
+    50%{
+        opacity:.9;
+        transform:translateX(-50%) scaleX(1.1);
+    }
+}
+
+@keyframes platformPulse{
+    0%,100%{
+        transform:translateX(-50%) scale(.94);
+        opacity:.7;
+    }
+
+    50%{
+        transform:translateX(-50%) scale(1.04);
+        opacity:1;
+    }
+}
+
+</style>
+<style>
+
+/* NEW HOLOGRAM - UNIQUE CLASSES */
+
+.new-hologram{
+    position:relative;
+    width:450px;
+    height:460px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:visible;
+}
+
+.new-shield{
+    position:relative;
+    z-index:10;
+    width:300px;
+    height:330px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    animation:newFloat 2.7s ease-in-out infinite;
+}
+
+.new-shield img{
+    width:290px !important;
+    height:320px !important;
+    object-fit:contain;
+    filter:
+        drop-shadow(0 0 18px #00eaff)
+        drop-shadow(0 0 45px #0077ff)
+        drop-shadow(0 0 75px rgba(0,234,255,.55));
+}
+
+.new-orbit{
+    position:absolute;
+    left:50%;
+    top:48%;
+    border-radius:50%;
+    pointer-events:none;
+}
+
+.orbit-a{
+    width:410px;
+    height:145px;
+    border:2px solid #00eaff;
+    box-shadow:0 0 18px #00cfff;
+    animation:newOrbitA 6s linear infinite;
+}
+
+.orbit-b{
+    width:350px;
+    height:115px;
+    border:2px solid #9d4dff;
+    box-shadow:0 0 18px #9d4dff;
+    animation:newOrbitB 5s linear infinite;
+}
+
+.new-scan-line{
+    position:absolute;
+    z-index:15;
+    top:15%;
+    left:8%;
+    width:84%;
+    height:3px;
+    background:#00ffff;
+    box-shadow:
+        0 0 10px #00ffff,
+        0 0 25px #00ffff;
+    animation:newScan 2.2s linear infinite;
+}
+
+.new-light-beam{
+    position:absolute;
+    z-index:2;
+    bottom:45px;
+    left:50%;
+    width:210px;
+    height:260px;
+    transform:translateX(-50%);
+    background:linear-gradient(
+        to top,
+        rgba(0,234,255,.38),
+        rgba(0,120,255,.10),
+        transparent
+    );
+    clip-path:polygon(25% 100%,75% 100%,58% 0,42% 0);
+    filter:blur(5px);
+    animation:newBeam 2s ease-in-out infinite;
+}
+
+.new-platform{
+    position:absolute;
+    z-index:5;
+    left:50%;
+    bottom:25px;
+    width:320px;
+    height:75px;
+    transform:translateX(-50%);
+    border-radius:50%;
+    border:2px solid #00eaff;
+    background:radial-gradient(
+        ellipse,
+        rgba(0,234,255,.40),
+        rgba(0,80,255,.12),
+        transparent 70%
+    );
+    box-shadow:
+        0 0 20px #00eaff,
+        0 0 55px rgba(0,120,255,.65),
+        inset 0 0 25px rgba(0,234,255,.40);
+    animation:newPlatform 2s ease-in-out infinite;
+}
+
+@keyframes newFloat{
+    0%,100%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-22px);
+    }
+}
+
+@keyframes newOrbitA{
+    from{
+        transform:translate(-50%,-50%) rotate(0deg);
+    }
+
+    to{
+        transform:translate(-50%,-50%) rotate(360deg);
+    }
+}
+
+@keyframes newOrbitB{
+    from{
+        transform:translate(-50%,-50%) rotate(360deg);
+    }
+
+    to{
+        transform:translate(-50%,-50%) rotate(0deg);
+    }
+}
+
+@keyframes newScan{
+    0%{
+        top:12%;
+        opacity:0;
+    }
+
+    15%{
+        opacity:1;
+    }
+
+    85%{
+        opacity:1;
+    }
+
+    100%{
+        top:88%;
+        opacity:0;
+    }
+}
+
+@keyframes newBeam{
+    0%,100%{
+        opacity:.35;
+    }
+
+    50%{
+        opacity:1;
+    }
+}
+
+@keyframes newPlatform{
+    0%,100%{
+        transform:translateX(-50%) scale(.92);
+        opacity:.7;
+    }
+
+    50%{
+        transform:translateX(-50%) scale(1.06);
+        opacity:1;
+    }
+}
+
+</style>
+
+<script>
+
+const heroCanvas=document.getElementById("heroParticles");
+const ctx=heroCanvas.getContext("2d");
+
+function resizeHero(){
+
+heroCanvas.width=heroCanvas.offsetWidth;
+heroCanvas.height=heroCanvas.offsetHeight;
+
+}
+
+resizeHero();
+
+window.addEventListener("resize",resizeHero);
+
+let particles=[];
+
+class Particle{
+
+constructor(){
+
+this.x=Math.random()*heroCanvas.width;
+this.y=Math.random()*heroCanvas.height;
+
+this.vx=Math.random()*0.5-0.25;
+this.vy=Math.random()*0.5-0.25;
+
+this.r=Math.random()*2+1;
+
+}
+
+update(){
+
+this.x+=this.vx;
+this.y+=this.vy;
+
+if(this.x<0||this.x>heroCanvas.width) this.vx*=-1;
+if(this.y<0||this.y>heroCanvas.height) this.vy*=-1;
+
+}
+
+draw(){
+
+ctx.beginPath();
+
+ctx.arc(this.x,this.y,this.r,0,Math.PI*2);
+
+ctx.fillStyle="#00d9ff";
+
+ctx.shadowBlur=12;
+ctx.shadowColor="#00d9ff";
+
+ctx.fill();
+
+ctx.shadowBlur=0;
+
+}
+
+}
+
+for(let i=0;i<60;i++){
+
+particles.push(new Particle());
+
+}
+
+function animate(){
+
+ctx.clearRect(0,0,heroCanvas.width,heroCanvas.height);
+
+for(let p of particles){
+
+p.update();
+p.draw();
+
+}
+
+for(let i=0;i<particles.length;i++){
+
+for(let j=i+1;j<particles.length;j++){
+
+let dx=particles[i].x-particles[j].x;
+let dy=particles[i].y-particles[j].y;
+
+let dist=Math.sqrt(dx*dx+dy*dy);
+
+if(dist<130){
+
+ctx.beginPath();
+
+ctx.strokeStyle="rgba(0,217,255,"+(1-dist/130)*0.15+")";
+
+ctx.moveTo(particles[i].x,particles[i].y);
+
+ctx.lineTo(particles[j].x,particles[j].y);
+
+ctx.stroke();
+
+}
+
+}
+
+}
+
+requestAnimationFrame(animate);
+
+}
+
+animate();
+
+</script>
+{% endblock %}

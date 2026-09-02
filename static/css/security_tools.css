@@ -1,0 +1,800 @@
+/*=========================================
+ Security Tools Page
+=========================================*/
+
+.dashboard-wrapper{
+    padding:30px;
+}
+
+/*=========================================
+ Security Tools Hero
+=========================================*/
+
+/*=========================================
+ Security Tools Hero
+=========================================*/
+
+.security-tools-hero{
+    position:relative;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    min-height:230px;
+
+    padding:45px 55px;
+    margin-bottom:30px;
+
+    border-radius:24px;
+    overflow:hidden;
+
+    background:
+        radial-gradient(
+            circle at 88% 35%,
+            rgba(0,180,255,.28),
+            transparent 28%
+        ),
+        linear-gradient(
+            135deg,
+            #08254e 0%,
+            #123e80 55%,
+            #1859b4 100%
+        );
+
+    border:1px solid rgba(0,190,255,.40);
+
+    box-shadow:
+        0 14px 34px rgba(0,0,0,.28);
+}
+
+/* Remove particle canvas */
+
+#securityParticles{
+    display:none;
+}
+
+/* Left text */
+
+.security-tools-hero-left{
+    position:relative;
+    z-index:2;
+
+    flex:0 0 52%;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:flex-start;
+}
+
+.security-tools-hero-left h1{
+    margin:0 0 26px 0;
+
+    color:#ffffff;
+
+    font-size:58px;
+    line-height:1.05;
+}
+
+.security-tools-hero-left p{
+    max-width:570px;
+    margin:0;
+
+    color:#b9cce3;
+
+    font-size:21px;
+    line-height:1.8;
+}
+
+/* Right icon */
+
+.security-tools-hero-right{
+    position:relative;
+    z-index:2;
+
+    flex:0 0 40%;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.security-tools-hero-right i{
+    color:#00d9f5;
+
+    font-size:150px;
+
+    filter:
+        drop-shadow(0 0 16px rgba(0,229,255,.65));
+
+    animation:none;
+}
+
+@keyframes securityToolFloat{
+
+    0%,
+    100%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-10px);
+    }
+
+}
+
+/*=========================================
+ Tool Cards Grid
+=========================================*/
+
+.chart-grid{
+    display:grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap:25px;
+
+    margin-bottom:30px;
+}
+
+.chart-card{
+    min-width:0;
+
+    padding:25px;
+
+    border-radius:18px;
+
+    background:#12233d;
+
+    border:
+        1px solid rgba(255,255,255,.05);
+
+    box-shadow:
+        0 12px 30px rgba(0,0,0,.25);
+
+    transition:
+        transform .35s ease,
+        box-shadow .35s ease;
+}
+
+.chart-card:hover{
+    transform:translateY(-6px);
+
+    box-shadow:
+        0 20px 35px
+        rgba(0,229,255,.15);
+}
+
+/*=========================================
+ Card Header
+=========================================*/
+
+.card-header{
+    margin-bottom:20px;
+}
+
+.card-header h3{
+    display:flex;
+    align-items:center;
+
+    gap:10px;
+
+    margin:0;
+
+    color:#ffffff;
+
+    font-size:22px;
+}
+
+.card-header i{
+    color:#00e5ff;
+}
+
+/*=========================================
+ Inputs
+=========================================*/
+
+.search-input,
+input[type="text"],
+input[type="file"]{
+    width:100%;
+
+    padding:14px 18px;
+
+    box-sizing:border-box;
+
+    border:none;
+    outline:none;
+    border-radius:10px;
+
+    background:#162845;
+    color:#ffffff;
+
+    font-size:15px;
+}
+
+.search-input::placeholder,
+input[type="text"]::placeholder{
+    color:#8ea7c2;
+}
+
+/*=========================================
+ Buttons
+=========================================*/
+
+.primary-btn{
+    width:100%;
+
+    padding:14px 28px;
+
+    border:none;
+    border-radius:10px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #00c6ff,
+            #0072ff
+        );
+
+    color:#ffffff;
+
+    font-size:15px;
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:
+        transform .3s ease,
+        box-shadow .3s ease;
+}
+
+.primary-btn:hover{
+    transform:translateY(-3px);
+
+    box-shadow:
+        0 15px 25px
+        rgba(0,229,255,.25);
+}
+
+/*=========================================
+ Result Boxes
+=========================================*/
+
+pre{
+    width:100%;
+    height:280px;
+
+    margin:0;
+    padding:18px;
+
+    box-sizing:border-box;
+    overflow:auto;
+
+    border-radius:10px;
+
+    background:#0d1b30;
+    color:#00ff8c;
+
+    border:
+        1px solid rgba(255,255,255,.05);
+
+    font-size:13px;
+    line-height:1.5;
+
+    white-space:pre-wrap;
+    word-break:break-word;
+}
+
+/*=========================================
+ Summary Grid
+=========================================*/
+
+.summary-grid{
+    display:grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    gap:20px;
+}
+
+.summary-item{
+    padding:22px;
+
+    border-radius:16px;
+
+    text-align:center;
+
+    background:#12233d;
+
+    border:
+        1px solid rgba(0,229,255,.08);
+
+    transition:
+        transform .3s ease,
+        box-shadow .3s ease;
+}
+
+.summary-item:hover{
+    transform:translateY(-5px);
+
+    box-shadow:
+        0 12px 25px
+        rgba(0,229,255,.10);
+}
+
+.summary-item h5{
+    margin:0 0 10px 0;
+
+    color:#9fb4cb;
+}
+
+.summary-item h2{
+    margin:0;
+
+    color:#ffffff;
+
+    font-size:28px;
+}
+
+.online{
+    color:#00d084 !important;
+
+    font-weight:700;
+}
+
+/*=========================================
+ Tablet
+=========================================*/
+
+@media(max-width:1100px){
+
+    .chart-grid{
+        grid-template-columns:1fr;
+    }
+
+    .summary-grid{
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+}
+
+/*=========================================
+ Mobile
+=========================================*/
+
+@media(max-width:768px){
+
+    .dashboard-wrapper{
+        padding:20px;
+    }
+
+    .security-tools-hero{
+        flex-direction:column;
+
+        min-height:auto;
+
+        padding:32px 22px;
+
+        text-align:center;
+
+        gap:25px;
+    }
+
+    .security-tools-hero-left,
+    .security-tools-hero-right{
+        flex:0 0 auto;
+
+        width:100%;
+
+        align-items:center;
+    }
+
+    .security-tools-hero-left h1{
+        font-size:34px;
+    }
+
+    .security-tools-hero-left p{
+        font-size:15px;
+    }
+
+    .security-tools-hero-right i{
+        font-size:110px;
+    }
+
+    .summary-grid{
+        grid-template-columns:1fr;
+    }
+
+}
+/* =========================================
+   CYBER WAVE BACKGROUND
+========================================= */
+
+.hero-section{
+    position:relative;
+    overflow:hidden;
+}
+
+/* keep content above waves */
+
+.hero-left,
+.hero-right{
+    position:relative;
+    z-index:10;
+}
+
+/* Wave Layer */
+
+.wave-bg{
+
+    position:absolute;
+
+    left:0;
+    bottom:0;
+
+    width:100%;
+    height:140px;
+
+    overflow:hidden;
+
+    pointer-events:none;
+
+    z-index:1;
+
+}
+
+/* Common Wave */
+
+.wave-bg span{
+
+    position:absolute;
+
+    left:-50%;
+
+    width:200%;
+
+    height:180px;
+
+    border-radius:50%;
+
+    border-top:2px solid rgba(0,229,255,.16);
+
+    animation:waveMove 12s linear infinite;
+
+}
+
+/* Wave 1 */
+
+.wave-bg span:nth-child(1){
+
+    bottom:10px;
+
+    opacity:.45;
+
+}
+
+/* Wave 2 */
+
+.wave-bg span:nth-child(2){
+
+    bottom:32px;
+
+    opacity:.30;
+
+    animation-duration:16s;
+
+}
+
+/* Wave 3 */
+
+.wave-bg span:nth-child(3){
+
+    bottom:56px;
+
+    opacity:.18;
+
+    animation-duration:20s;
+
+}
+
+@keyframes waveMove{
+
+    from{
+
+        transform:translateX(0);
+
+    }
+
+    to{
+
+        transform:translateX(25%);
+
+    }
+
+}
+/* =========================================
+   SECURITY TOOLS CYBER WAVE
+========================================= */
+
+.security-tools-hero{
+    position:relative;
+    overflow:hidden;
+}
+
+.security-tools-hero-left,
+.security-tools-hero-right{
+    position:relative;
+    z-index:5;
+}
+
+.wave-bg{
+    position:absolute;
+
+    left:0;
+    bottom:0;
+
+    width:100%;
+    height:120px;
+
+    z-index:1;
+    overflow:hidden;
+
+    pointer-events:none;
+}
+
+.wave-bg span{
+    position:absolute;
+
+    left:-20%;
+    bottom:-95px;
+
+    width:140%;
+    height:150px;
+
+    border-radius:50%;
+
+    border-top:2px solid rgba(0,229,255,.35);
+
+    box-shadow:
+        0 -5px 20px rgba(0,229,255,.12);
+
+    animation:securityWaveMove 8s linear infinite;
+}
+
+.wave-bg span:nth-child(1){
+    bottom:-82px;
+    opacity:.75;
+}
+
+.wave-bg span:nth-child(2){
+    bottom:-62px;
+    opacity:.45;
+    animation-duration:11s;
+    animation-direction:reverse;
+}
+
+.wave-bg span:nth-child(3){
+    bottom:-42px;
+    opacity:.25;
+    animation-duration:14s;
+}
+
+@keyframes securityWaveMove{
+
+    0%{
+        transform:translateX(-5%) scaleX(1);
+    }
+
+    50%{
+        transform:translateX(5%) scaleX(1.05);
+    }
+
+    100%{
+        transform:translateX(-5%) scaleX(1);
+    }
+
+}
+/* =========================================
+   VISIBLE SECURITY TOOLS WAVE ANIMATION
+========================================= */
+
+.security-tools-hero{
+    position:relative !important;
+    overflow:hidden !important;
+}
+
+.security-tools-hero-left,
+.security-tools-hero-right{
+    position:relative !important;
+    z-index:10 !important;
+}
+
+/* First moving wave layer */
+
+.security-tools-hero::before{
+    content:"";
+
+    position:absolute;
+
+    left:-20%;
+    bottom:-85px;
+
+    width:140%;
+    height:220px;
+
+    z-index:2;
+    pointer-events:none;
+
+    border-radius:45% 55% 0 0;
+
+    background:
+        repeating-radial-gradient(
+            ellipse at center bottom,
+            transparent 0px,
+            transparent 18px,
+            rgba(0,229,255,.50) 20px,
+            transparent 23px,
+            transparent 38px
+        );
+
+    filter:
+        drop-shadow(0 0 7px rgba(0,229,255,.65));
+
+    animation:
+        securityWaveOne
+        5s
+        ease-in-out
+        infinite;
+}
+
+/* Second moving wave layer */
+
+.security-tools-hero::after{
+    content:"";
+
+    position:absolute;
+
+    left:-15%;
+    bottom:-105px;
+
+    width:130%;
+    height:240px;
+
+    z-index:1;
+    pointer-events:none;
+
+    border-radius:55% 45% 0 0;
+
+    background:
+        repeating-radial-gradient(
+            ellipse at center bottom,
+            transparent 0px,
+            transparent 25px,
+            rgba(65,135,255,.38) 28px,
+            transparent 31px,
+            transparent 52px
+        );
+
+    filter:
+        drop-shadow(0 0 10px rgba(0,145,255,.55));
+
+    animation:
+        securityWaveTwo
+        7s
+        ease-in-out
+        infinite;
+}
+
+@keyframes securityWaveOne{
+
+    0%,
+    100%{
+        transform:
+            translateX(-30px)
+            translateY(0)
+            scaleX(1);
+    }
+
+    50%{
+        transform:
+            translateX(45px)
+            translateY(-18px)
+            scaleX(1.08);
+    }
+
+}
+
+@keyframes securityWaveTwo{
+
+    0%,
+    100%{
+        transform:
+            translateX(45px)
+            translateY(0)
+            scaleX(1.06);
+    }
+
+    50%{
+        transform:
+            translateX(-40px)
+            translateY(-22px)
+            scaleX(.96);
+    }
+
+}
+/* SECURITY TOOLS BLUE HERO BOX */
+
+.security-tools-hero {
+    position: relative !important;
+    overflow: hidden !important;
+
+    min-height: 280px;
+    margin: 30px 35px 40px 35px;
+    padding: 55px 60px;
+
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    background: linear-gradient(
+        110deg,
+        #08224d 0%,
+        #0c3474 52%,
+        #1265bd 100%
+    );
+
+    border: 1px solid rgba(0, 174, 255, 0.55);
+    border-radius: 24px;
+
+    box-shadow:
+        inset 0 0 45px rgba(0, 136, 255, 0.12),
+        0 15px 35px rgba(0, 0, 0, 0.25);
+}
+
+.security-tools-hero-left {
+    position: relative !important;
+    z-index: 10 !important;
+    max-width: 650px;
+}
+
+.security-tools-hero-left h1 {
+    margin: 0 0 14px 0;
+    color: #ffffff;
+    font-size: 48px;
+    line-height: 1.1;
+}
+
+.security-tools-hero-left p {
+    margin: 0;
+    max-width: 650px;
+    color: #c6d4eb;
+    font-size: 19px;
+    line-height: 1.6;
+}
+
+.security-tools-hero-right {
+    position: relative !important;
+    z-index: 10 !important;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 180px;
+    min-width: 180px;
+    height: 160px;
+}
+
+.security-tools-hero-right i {
+    color: #12dcff;
+    font-size: 100px;
+
+    filter: drop-shadow(
+        0 0 20px rgba(18, 220, 255, 0.55)
+    );
+}

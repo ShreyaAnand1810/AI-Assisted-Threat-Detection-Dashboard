@@ -1,0 +1,689 @@
+/*=========================================
+ AI Threat Detection Login
+=========================================*/
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:"Segoe UI",sans-serif;
+}
+
+body{
+
+background:#07111f;
+
+overflow:hidden;
+
+color:white;
+
+}
+
+/*================ Background ================*/
+
+.login-background{
+
+position:fixed;
+
+width:100%;
+
+height:100%;
+
+overflow:hidden;
+
+z-index:-1;
+
+background:linear-gradient(135deg,#07111f,#0f1e33);
+
+}
+
+.blur-circle{
+
+position:absolute;
+
+border-radius:50%;
+
+filter:blur(120px);
+
+opacity:.35;
+
+}
+
+.blur-circle.one{
+
+width:450px;
+
+height:450px;
+
+background:#00e5ff;
+
+left:-120px;
+
+top:-100px;
+
+}
+
+.blur-circle.two{
+
+width:500px;
+
+height:500px;
+
+background:#0066ff;
+
+right:-150px;
+
+bottom:-150px;
+
+}
+
+/*================ Layout ================*/
+
+.login-container{
+
+display:flex;
+
+height:100vh;
+
+}
+
+/*================ Left Side ================*/
+
+.login-left{
+
+flex:1;
+
+display:flex;
+
+flex-direction:column;
+
+justify-content:center;
+
+padding:80px;
+
+}
+/* ===== Left Side Animation ===== */
+
+.login-left{
+
+position:relative;
+
+z-index:2;
+
+animation:leftEntry .9s ease forwards;
+
+}
+
+@keyframes leftEntry{
+
+from{
+
+opacity:0;
+
+transform:translateX(-60px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:translateX(0);
+
+}
+
+}
+
+.login-logo{
+
+width:170px;
+height:auto;
+
+margin-bottom:30px;
+
+position:relative;
+
+filter:
+drop-shadow(0 0 12px rgba(0,229,255,.7))
+drop-shadow(0 0 35px rgba(0,229,255,.45));
+
+animation:logoFloat 4s ease-in-out infinite;
+
+transition:.4s;
+
+}
+
+.login-logo:hover{
+
+transform:scale(1.05);
+
+}
+@keyframes logoFloat{
+
+0%,100%{
+
+transform:translateY(0px);
+
+}
+
+50%{
+
+transform:translateY(-12px);
+
+}
+
+}
+
+@keyframes shieldFloat{
+
+0%,100%{
+
+transform:translateY(0);
+
+}
+
+50%{
+
+transform:translateY(-12px);
+
+}
+
+}
+
+.login-left h1{
+
+font-size:48px;
+
+margin-bottom:12px;
+
+}
+
+.login-left h3{
+
+color:#00e5ff;
+
+margin-bottom:25px;
+
+font-weight:500;
+
+}
+
+.login-left p{
+
+max-width:520px;
+
+line-height:1.8;
+
+color:#c7d8ea;
+
+font-size:16px;
+
+margin-bottom:40px;
+
+}
+
+/*================ Features ================*/
+
+.feature-list{
+
+display:grid;
+
+grid-template-columns:repeat(2,1fr);
+
+gap:18px;
+
+max-width:560px;
+
+}
+
+.feature-list div{
+
+background:#13233d;
+
+padding:18px;
+
+border-radius:12px;
+
+display:flex;
+
+align-items:center;
+
+gap:12px;
+
+transition:.3s;
+
+border:1px solid rgba(0,229,255,.08);
+
+}
+
+.feature-list div:hover{
+
+transform:translateY(-5px);
+
+box-shadow:0 12px 28px rgba(0,229,255,.18);
+
+}
+
+.feature-list i{
+
+color:#00e5ff;
+
+font-size:20px;
+
+}
+
+/*================ Right Side ================*/
+
+.login-right{
+
+width:500px;
+
+display:flex;
+
+justify-content:flex-start;
+
+align-items:center;
+
+padding:40px;
+
+}
+
+.login-card{
+
+width:100%;
+
+background:#101c31;
+
+padding:45px;
+
+border-radius:20px;
+
+box-shadow:0 20px 45px rgba(0,0,0,.35);
+
+border:1px solid rgba(0,229,255,.10);
+
+}
+
+.login-card h2{
+
+font-size:34px;
+
+margin-bottom:8px;
+
+}
+
+.login-card p{
+
+color:#9cb4cf;
+
+margin-bottom:30px;
+
+}
+/* ===== Login Card Animation ===== */
+
+.login-card{
+
+position:relative;
+
+z-index:2;
+
+animation:cardEntry .8s ease forwards;
+
+transition:
+transform .35s ease,
+box-shadow .35s ease,
+border-color .35s ease;
+
+}
+
+.login-card:hover{
+
+transform:translateY(-8px);
+
+border-color:rgba(0,229,255,.35);
+
+box-shadow:
+0 25px 60px rgba(0,0,0,.45),
+0 0 40px rgba(0,229,255,.18);
+
+}
+
+@keyframes cardEntry{
+
+from{
+
+opacity:0;
+
+transform:translateX(60px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:translateX(0);
+
+}
+
+}
+/*================ Inputs ================*/
+
+.input-group{
+
+position:relative;
+
+margin-bottom:22px;
+
+}
+
+.input-group i{
+
+position:absolute;
+
+left:18px;
+
+top:17px;
+
+color:#00e5ff;
+
+}
+
+.input-group input{
+
+width:100%;
+
+height:54px;
+
+padding-left:52px;
+
+border:none;
+
+outline:none;
+
+border-radius:10px;
+
+background:#162845;
+
+color:white;
+
+font-size:15px;
+
+}
+
+.input-group input::placeholder{
+
+color:#8ea7c2;
+
+}
+
+/*================ Button ================*/
+
+.login-btn{
+
+width:100%;
+
+height:54px;
+
+border:none;
+
+border-radius:10px;
+
+background:linear-gradient(135deg,#00c6ff,#0072ff);
+
+color:white;
+
+font-size:17px;
+
+font-weight:600;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+.login-btn:hover{
+
+transform:translateY(-2px);
+
+box-shadow:0 12px 24px rgba(0,229,255,.25);
+
+}
+
+/*================ Alert ================*/
+
+
+/*================ Footer Text ================*/
+
+.bottom-text{
+
+margin-top:25px;
+
+text-align:center;
+
+font-size:13px;
+
+color:#8ea7c2;
+
+line-height:1.7;
+
+}
+
+/*================ Responsive ================*/
+
+@media(max-width:980px){
+
+.login-left{
+
+display:none;
+
+}
+
+.login-right{
+
+width:100%;
+
+}
+
+.login-card{
+
+max-width:460px;
+
+}
+
+}
+
+@media(max-width:600px){
+
+.login-right{
+
+padding:20px;
+
+}
+
+.login-card{
+
+padding:30px;
+
+}
+
+.login-card h2{
+
+font-size:28px;
+
+}
+
+}
+/* ==============================
+   LIVE LOGIN PAGE ANIMATIONS
+============================== */
+
+body{
+    position:relative;
+    overflow:hidden;
+}
+
+/* Moving blue glow */
+body::before,
+body::after{
+    content:"";
+    position:fixed;
+    width:500px;
+    height:500px;
+    border-radius:50%;
+    filter:blur(100px);
+    opacity:.18;
+    pointer-events:none;
+    z-index:0;
+}
+
+body::before{
+    background:#00d9ff;
+    top:-180px;
+    left:-150px;
+    animation:moveGlowOne 10s ease-in-out infinite alternate;
+}
+
+body::after{
+    background:#0867ff;
+    right:-180px;
+    bottom:-220px;
+    animation:moveGlowTwo 12s ease-in-out infinite alternate;
+}
+
+@keyframes moveGlowOne{
+    from{
+        transform:translate(0,0) scale(1);
+    }
+
+    to{
+        transform:translate(180px,120px) scale(1.2);
+    }
+}
+
+@keyframes moveGlowTwo{
+    from{
+        transform:translate(0,0) scale(1);
+    }
+
+    to{
+        transform:translate(-180px,-100px) scale(1.15);
+    }
+}
+.login-logo{
+    animation:shieldFloat 3s ease-in-out infinite;
+    filter:drop-shadow(0 0 18px rgba(0,229,255,.55));
+}
+
+@keyframes shieldFloat{
+    0%,100%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-12px);
+    }
+}
+/* ===== Animated Cyber Background ===== */
+
+#cyberCanvas{
+    position:fixed;
+    inset:0;
+    width:100%;
+    height:100%;
+    z-index:0;
+    pointer-events:none;
+    opacity:.65;
+}
+
+.login-background{
+    z-index:-2;
+}
+
+.login-container{
+    position:relative;
+    z-index:2;
+}
+.logo-wrapper{
+
+position:relative;
+
+width:210px;
+height:210px;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+margin-bottom:25px;
+
+}
+
+.logo-wrapper::before{
+
+content:"";
+
+position:absolute;
+
+width:200px;
+height:200px;
+
+border-radius:50%;
+
+background:
+conic-gradient(
+from 0deg,
+#00e5ff,
+#0077ff,
+#7b2cff,
+#00e5ff
+);
+
+animation:rotateBorder 5s linear infinite;
+
+filter:blur(2px);
+
+}
+
+.logo-wrapper::after{
+
+content:"";
+
+position:absolute;
+
+width:188px;
+height:188px;
+
+background:#07111f;
+
+border-radius:50%;
+
+box-shadow:
+0 0 40px rgba(0,229,255,.25) inset;
+
+}
+
+.logo-wrapper img{
+
+position:relative;
+
+z-index:3;
+
+}
+
+@keyframes rotateBorder{
+
+from{
+
+transform:rotate(0deg);
+
+}
+
+to{
+
+transform:rotate(360deg);
+
+}
+
+}

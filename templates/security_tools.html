@@ -1,0 +1,206 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="dashboard-wrapper">
+
+    <!-- ================= HERO ================= -->
+
+    <div class="hero-section">
+
+        <div class="hero-left">
+
+            <h1>Security Tools</h1>
+
+            <p>
+                Professional Cyber Security Toolkit for Network Scanning,
+                Packet Analysis and Penetration Testing.
+            </p>
+
+        </div>
+
+        <div class="hero-right">
+
+            <i class="fa-solid fa-toolbox fa-6x"
+               style="color:#00e5ff;"></i>
+
+        </div>
+
+    </div>
+
+    <!-- ================= TOOL CARDS ================= -->
+
+    <div class="chart-grid">
+
+        <!-- ================= NMAP ================= -->
+
+        <div class="chart-card">
+
+            <div class="card-header">
+
+                <h3>
+                    <i class="fa-solid fa-network-wired"></i>
+                    Network Scanner
+                </h3>
+
+            </div>
+
+            <form id="nmapForm">
+
+                <input
+                    type="text"
+                    id="target"
+                    class="search-input"
+                    placeholder="Enter IP Address">
+
+                <br><br>
+
+                <button
+                    type="button"
+                    class="primary-btn"
+                    onclick="runNmap()">
+
+                    Scan Network
+
+                </button>
+
+            </form>
+
+            <br>
+
+            <pre id="nmapResult"></pre>
+
+        </div>
+
+        <!-- ================= WIRESHARK ================= -->
+
+        <div class="chart-card">
+
+            <div class="card-header">
+
+                <h3>
+                    <i class="fa-solid fa-wave-square"></i>
+                    Packet Analyzer
+                </h3>
+
+            </div>
+
+            <form id="pcapForm"
+                  enctype="multipart/form-data">
+
+                <<input
+    type="file"
+    name="pcap_file"
+    accept=".pcap,.pcapng"
+    required
+>
+
+                <br><br>
+
+                <button
+                    type="button"
+                    class="primary-btn"
+                    onclick="analyzePCAP()">
+
+                    Analyze PCAP
+
+                </button>
+
+            </form>
+
+            <br>
+
+            <!-- CHANGED -->
+            <div id="pcapResult" class="report-box"></div>
+
+        </div>
+
+        <!-- ================= PEN TEST ================= -->
+
+        <div class="chart-card">
+
+            <div class="card-header">
+
+                <h3>
+                    <i class="fa-solid fa-user-secret"></i>
+                    Penetration Test
+                </h3>
+
+            </div>
+
+            <button
+                class="primary-btn"
+                onclick="runPenTest()">
+
+                Generate Report
+
+            </button>
+
+            <br><br>
+
+            <!-- CHANGED -->
+            <div id="penResult" class="report-box"></div>
+
+        </div>
+
+    </div>
+
+    <!-- ================= STATUS ================= -->
+
+    <div class="summary-grid">
+
+        <div class="summary-item">
+
+            <h5>Nmap</h5>
+
+            <h2 class="online">
+
+                READY
+
+            </h2>
+
+        </div>
+
+        <div class="summary-item">
+
+            <h5>Packet Analyzer</h5>
+
+            <h2 class="online">
+
+                READY
+
+            </h2>
+
+        </div>
+
+        <div class="summary-item">
+
+            <h5>Pen Test</h5>
+
+            <h2 class="online">
+
+                READY
+
+            </h2>
+
+        </div>
+
+        <div class="summary-item">
+
+            <h5>Status</h5>
+
+            <h2 id="toolStatus">
+
+                Waiting...
+
+            </h2>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="{{ url_for('static', filename='js/security_tools.js') }}"></script>
+
+{% endblock %}

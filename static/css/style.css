@@ -1,0 +1,53 @@
+*{
+
+margin:0;
+
+padding:0;
+
+box-sizing:border-box;
+
+font-family:'Poppins',sans-serif;
+
+}
+
+body{
+
+background:
+
+radial-gradient(circle at top,#0b1e35,#030914,#000814);
+
+background-size:400% 400%;
+
+animation:bgmove 12s infinite alternate;
+
+color:white;
+
+overflow-x:hidden;
+
+}
+
+@keyframes bgmove{
+
+0%{
+
+background-position:left top;
+
+}
+
+100%{
+
+background-position:right bottom;
+
+}
+
+}
+
+.main-content{
+
+margin-left:260px;
+
+padding:30px;
+
+min-height:100vh;
+
+}

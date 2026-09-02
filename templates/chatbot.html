@@ -1,0 +1,134 @@
+<!-- Floating Chat Button -->
+<div id="chatbot-container">
+
+    <button id="chat-toggle" title="CyberShield AI">
+        🤖
+    </button>
+
+</div>
+
+<!-- Chat Window -->
+<div class="chat-container" id="chat-window">
+
+    <!-- Header -->
+    <div class="chat-header">
+
+        <div class="robot">
+            🤖
+        </div>
+
+        <div class="header-info">
+            <h2>CyberShield AI</h2>
+            <p>AI Powered Cyber Security Assistant</p>
+        </div>
+
+        <div class="header-actions">
+
+            <button id="mute-btn" title="Mute / Unmute">
+                🔊
+            </button>
+
+            <button id="clear-btn" title="Clear Chat">
+                🗑️
+            </button>
+
+            <button id="close-chat" title="Close">
+                ✖
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- Chat Messages -->
+    <div id="chat-box">
+
+        <div class="bot-message">
+
+            <strong>Hello 👋</strong>
+
+            <br><br>
+
+            I am <b>CyberShield AI</b>.
+
+            <br><br>
+
+            I can help you with:
+
+            <ul>
+
+                <li>Malware Detection</li>
+
+                <li>Virus Analysis</li>
+
+                <li>Trojans</li>
+
+                <li>Phishing Attacks</li>
+
+                <li>Ransomware</li>
+
+                <li>SQL Injection</li>
+
+                <li>DDoS Attacks</li>
+
+                <li>Network Security</li>
+
+                <li>Cyber Security Tips</li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+    <!-- Typing Animation -->
+    <div class="typing" id="typing" style="display:none;">
+        🤖 CyberShield AI is typing...
+    </div>
+
+    <!-- Suggestions -->
+    <div class="suggestions">
+
+        <button onclick="askSuggestion('What is phishing?')">
+            What is Phishing?
+        </button>
+
+        <button onclick="askSuggestion('How can I prevent ransomware?')">
+            Prevent Ransomware
+        </button>
+
+        <button onclick="askSuggestion('Explain SQL Injection')">
+            SQL Injection
+        </button>
+
+        <button onclick="askSuggestion('What is a DDoS attack?')">
+            DDoS Attack
+        </button>
+
+        <button onclick="askSuggestion('How do I detect malware?')">
+            Detect Malware
+        </button>
+
+    </div>
+
+    <!-- Input -->
+    <div class="input-area">
+
+        <button id="voice-btn" title="Voice Input">
+            🎤
+        </button>
+
+        <input
+            type="text"
+            id="message"
+            placeholder="Ask CyberShield AI..."
+            autocomplete="off"
+        >
+
+        <button id="send-btn">
+            Send
+        </button>
+
+    </div>
+
+</div>

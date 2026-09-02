@@ -1,0 +1,184 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="dashboard-wrapper">
+
+    <!-- ================= HERO ================= -->
+
+    <div class="hero-section">
+
+        <div class="hero-left">
+
+            <h1>Threat Intelligence</h1>
+
+            <p>
+
+                Real-time Cyber Threat Intelligence Dashboard powered by AI.
+
+            </p>
+
+        </div>
+
+        <div class="hero-right">
+
+            <i class="fa-solid fa-globe fa-6x"
+               style="color:#00e5ff;"></i>
+
+        </div>
+
+    </div>
+
+    <!-- ================= SUMMARY ================= -->
+
+    <div class="summary-grid">
+
+        <div class="summary-item">
+
+            <h5>Known Malware</h5>
+
+            <h2 id="malwareCount">0</h2>
+
+        </div>
+
+        <div class="summary-item">
+
+            <h5>Latest CVEs</h5>
+
+            <h2 id="cveCount">0</h2>
+
+        </div>
+
+        <div class="summary-item">
+
+            <h5>Risk Level</h5>
+
+            <h2 id="riskLevel">
+
+                Medium
+
+            </h2>
+
+        </div>
+
+        <div class="summary-item">
+
+            <h5>AI Status</h5>
+
+            <h2 class="online">
+
+                ACTIVE
+
+            </h2>
+
+        </div>
+
+    </div>
+
+    <!-- ================= GRID ================= -->
+
+    <div class="chart-grid">
+
+        <!-- Malware -->
+
+        <div class="chart-card">
+
+            <div class="card-header">
+
+                <h3>
+
+                    <i class="fa-solid fa-bug"></i>
+
+                    Malware Feed
+
+                </h3>
+
+            </div>
+
+            <div id="malwareFeed">
+
+                Loading...
+
+            </div>
+
+        </div>
+
+        <!-- CVEs -->
+
+        <div class="chart-card">
+
+            <div class="card-header">
+
+                <h3>
+
+                    <i class="fa-solid fa-shield-virus"></i>
+
+                    Latest CVEs
+
+                </h3>
+
+            </div>
+
+            <div id="cveFeed">
+
+                Loading...
+
+            </div>
+
+        </div>
+
+        <!-- AI -->
+
+        <div class="chart-card">
+
+            <div class="card-header">
+
+                <h3>
+
+                    <i class="fa-solid fa-brain"></i>
+
+                    AI Recommendation
+
+                </h3>
+
+            </div>
+
+            <div id="aiSummary">
+
+                Loading...
+
+            </div>
+
+        </div>
+
+        <!-- IOC -->
+
+        <div class="chart-card">
+
+            <div class="card-header">
+
+                <h3>
+
+                    <i class="fa-solid fa-crosshairs"></i>
+
+                    Indicators of Compromise
+
+                </h3>
+
+            </div>
+
+            <div id="iocFeed">
+
+                Loading...
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="{{ url_for('static', filename='js/threat_intel.js') }}"></script>
+
+{% endblock %}

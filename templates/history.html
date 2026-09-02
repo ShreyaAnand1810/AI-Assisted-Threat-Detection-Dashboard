@@ -1,0 +1,199 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="dashboard-wrapper">
+
+    <!-- ================= HERO ================= -->
+
+    <div class="hero-section">
+
+        <div class="hero-left">
+
+            <h1>Scan History</h1>
+
+            <p>
+
+                View all previously scanned files and AI detection reports.
+
+            </p>
+
+        </div>
+
+        <div class="hero-right">
+
+            <i class="fa-solid fa-clock-rotate-left fa-6x"
+               style="color:#00e5ff"></i>
+
+        </div>
+
+    </div>
+
+    <!-- ================= SEARCH ================= -->
+
+    <div class="chart-card">
+
+        <form method="GET"
+              action="{{ url_for('history') }}">
+
+            <div style="display:flex;gap:15px;">
+
+                <input
+                    type="text"
+                    name="search"
+                    placeholder="Search filename..."
+                    class="search-input"
+                    style="flex:1">
+
+                <button
+                    class="primary-btn">
+
+                    <i class="fa-solid fa-magnifying-glass"></i>
+
+                    Search
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+    <br>
+
+    <!-- ================= HISTORY TABLE ================= -->
+
+    <div class="chart-card">
+
+        <div class="card-header">
+
+            <h3>
+
+                <i class="fa-solid fa-database"></i>
+
+                Scan Records
+
+            </h3>
+
+        </div>
+
+        <table class="recent-table">
+
+            <thead>
+
+                <tr>
+
+                    <th>ID</th>
+
+                    <th>Filename</th>
+
+                    <th>Prediction</th>
+
+                    <th>Risk</th>
+
+                    <th>Confidence</th>
+
+                    <th>Scan Time</th>
+
+                    <th>Action</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+            {% for scan in scans %}
+
+                <tr>
+
+                    <td>{{ scan.id }}</td>
+
+                    <td>{{ scan.filename }}</td>
+
+                    <td>
+
+                        {% if scan.prediction=="Safe" %}
+
+                        <span class="safe-badge">
+
+                            {{ scan.prediction }}
+
+                        </span>
+
+                        {% else %}
+
+                        <span class="danger-badge">
+
+                            {{ scan.prediction }}
+
+                        </span>
+
+                        {% endif %}
+
+                    </td>
+
+                    <td>{{ scan.risk }}</td>
+
+                    <td>{{ scan.confidence }}%</td>
+
+                    <td>{{ scan.scan_time }}</td>
+
+                    <td>
+
+                        <a href="{{ url_for('delete', id=scan.id) }}">
+
+                            <button
+                                style="background:#ff4d6d;
+                                color:white;
+                                padding:8px 14px;
+                                border:none;
+                                border-radius:8px;">
+
+                                Delete
+
+                            </button>
+
+                        </a>
+
+                    </td>
+
+                </tr>
+
+            {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+    <!-- ================= PAGINATION ================= -->
+
+    {% if total_pages > 1 %}
+
+    <div style="margin-top:30px;text-align:center;">
+
+        {% for p in range(1,total_pages+1) %}
+
+            <a href="?page={{p}}">
+
+                <button
+                    class="{% if page==p %}primary-btn{% else %}secondary-btn{% endif %}">
+
+                    {{p}}
+
+                </button>
+
+            </a>
+
+        {% endfor %}
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}
