@@ -1,0 +1,43 @@
+# Virtual Environment
+venv/
+env/
+
+# Python
+__pycache__/
+*.pyc
+
+# VS Code
+.vscode/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Logs
+*.log
+
+# Database
+*.db
+*.sqlite3
+
+# Uploads
+uploads/
+
+# PCAP
+*.pcap
+
+# Large datasets
+dataset/
+datasets/
+
+# Temporary
+temp/
+tmp/
+
+# Build
+build/
+dist/
+
+# Cache
+.cache/
+
+.env
